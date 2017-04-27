@@ -1,0 +1,15 @@
+version: "2"
+services:
+  client:
+    expose:
+      - 80
+    environment:
+      - "VIRTUAL_HOST=cabinet.localhost.local"
+    build: .
+    ports:
+      - "4200:4200"
+      - "49153:49153"
+    volumes:
+      - .:/usr/src/t-app
+    command: npm start
+    network_mode: "bridge"
