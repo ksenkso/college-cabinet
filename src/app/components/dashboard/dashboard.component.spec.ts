@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DashboardComponent } from './dashboard.component';
+import {AppModule} from "../../app.module";
+import {APP_BASE_HREF} from "@angular/common";
+import {OverlayService} from "../../services/overlay.service";
+import {TitleService} from "../../services/title.service";
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -8,7 +12,8 @@ describe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardComponent ]
+      declarations: [DashboardComponent],
+      providers: [{provide: APP_BASE_HREF, useValue: '/'}, OverlayService, TitleService]
     })
     .compileComponents();
   }));
