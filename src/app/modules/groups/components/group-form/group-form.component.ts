@@ -10,8 +10,8 @@ import {GroupsService} from "../../services/groups.service";
 
 @Component({
   selector: 'app-student-form',
-  templateUrl: 'student-form.component.html',
-  styleUrls: ['student-form.component.css']
+  templateUrl: 'group-form.component.html',
+  styleUrls: ['group-form.component.css']
 })
 export class GroupFormComponent implements OnInit, OnChanges {
 
