@@ -2,7 +2,7 @@
 
 VARN=$(docker ps -a -q --filter name=testtask_client_1)
 
-if [ -n $VARN ]
+if [ -n "$VARN" ]
         then 
           docker stop $VARN
           echo "stopped $VARN"
@@ -12,7 +12,7 @@ fi;
 
 VARN=$(docker ps -a -q --filter ancestor=jwilder/nginx-proxy)
 
-if [ -n $VARN ]
+if [ -n "$VARN" ]
         then 
           docker stop $VARN
           echo "stopped $VARN"
