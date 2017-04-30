@@ -11,5 +11,5 @@ services:
       - "49153:49153"
     volumes:
       - .:/usr/src/t-app
-    command: npm start
+    command: cp package.prod.json package.json && npm start
     network_mode: "bridge"
