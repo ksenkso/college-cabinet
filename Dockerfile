@@ -7,7 +7,7 @@ WORKDIR $HOME
 
 COPY package.prod.json /usr/src/t-app/package.json
 
-RUN npm install
+RUN npm install node-sass && npm install
 
 EXPOSE 80
 EXPOSE 49153
