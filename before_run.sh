@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VARN=$(docker ps -a -q --filter name=testtask_client_1)
+VARN=$(docker ps -a -q --filter name=cabinet)
 
 if [ -n "$VARN" ]
         then 
