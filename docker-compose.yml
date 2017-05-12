@@ -4,12 +4,11 @@ services:
     expose:
       - 80
     environment:
-      - "VIRTUAL_HOST=cabinet.localhost.local"
+      - "VIRTUAL_HOST=journal.ru"
     build: .
     ports:
       - "4200:4200"
       - "49153:49153"
     volumes:
       - .:/usr/src/t-app
-    command: sh start.sh
-    network_mode: "bridge"
+    command: "npm run -- ng serve -w --host 0.0.0.0 --port 80"

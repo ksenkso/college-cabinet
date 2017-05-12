@@ -1,15 +1,23 @@
 FROM node:6
 
-ENV VIRTUAL_HOST=cabinet.localhost.local
+ENV VIRTUAL_HOST=journal.ru
 ENV HOME=/usr/src/t-app
 RUN mkdir $HOME
-COPY . /usr/src/t-app/
+# COPY . /usr/src/t-app/
+
+WORKDIR $HOME/..
+
+RUN npm install -g @angular/cli \
+  && ng new t-app \
+  && cd t-app \
+  && npm install @angular/animations \
+  && npm install
+
+COPY ./src $HOME/src
 
 WORKDIR $HOME
 
-COPY package.prod.json /usr/src/t-app/package.json
-
-RUN npm install node-sass && npm install
+# CMD ["npm run -- ng serve -w --host 0.0.0.0 --port 80"]
 
 EXPOSE 80
 EXPOSE 49153
