@@ -11,11 +11,14 @@ import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import { OverlayComponent } from './components/overlay/overlay.component';
 import {OverlayService} from "./services/overlay.service";
 import { MenuComponent } from './components/menu/menu.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
+import { NotFoundComponent } from './modules/shared/compoents/not-found/not-found.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { HeaderComponent } from './components/header/header.component';
 import {MenuService} from "./services/menu.service";
 import {TitleService} from "./services/title.service";
+import {AuthGuard} from "./modules/shared/services/auth-guard.service";
+import {AuthService} from "./modules/shared/services/auth.service";
+import {SharedModule} from "./modules/shared/shared.module";
 
 
 @NgModule({
@@ -24,19 +27,20 @@ import {TitleService} from "./services/title.service";
     DashboardComponent,
     OverlayComponent,
     MenuComponent,
-    NotFoundComponent,
     HeaderComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    SharedModule,
     RoutingModule,
     BrowserAnimationsModule
   ],
   providers: [
     OverlayService,
     MenuService,
-    TitleService],
+    TitleService,
+  ],
 
   bootstrap: [AppComponent]
 })
