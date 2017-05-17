@@ -4,21 +4,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
-import {NotFoundComponent} from "./components/not-found/not-found.component";
+import {NotFoundComponent} from "./modules/shared/compoents/not-found/not-found.component";
+import {AuthGuard} from "./modules/shared/services/auth-guard.service";
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/index',
-    pathMatch: 'full'
+    component: DashboardComponent,
+    children: [
+      {
+        path: 'students',
+        loadChildren: './modules/students/students.module#StudentsModule',
+        canActivate: [AuthGuard]
+      }
+    ]
   },
   {
-    path: 'index',
-    component: DashboardComponent
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
   },
   {
-    path: 'students',
-    loadChildren: './modules/students/students.module#StudentsModule'
+    path: 'auth',
+    loadChildren: './modules/auth/auth.module#AuthModule'
   },
   {
     path: '**',

@@ -1,5 +1,8 @@
-<p>
-  dashboard works!
-  <button type="button" (click)="toggle()"></button>
-  <a routerLink="/students">Students</a>
-</p>
+<div class="app">
+  <app-header></app-header>
+  <app-menu></app-menu>
+  <main class="main">
+    <router-outlet></router-outlet>
+  </main>
+  <app-overlay></app-overlay>
+</div>
