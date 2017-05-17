@@ -1,11 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
 html, body {
   height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 main {
   padding: 3rem;
 }
+
+/*
+  Common
+ */
+
+/*
+  1. Lists
+ */
+.c-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+}
+
+.c-list__item {
+  display: block;
+  padding: .5rem;
+  margin: .5rem;
+}
+
 
 @media screen and (max-width: 990px) {
   main {
