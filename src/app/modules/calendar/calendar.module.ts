@@ -7,13 +7,14 @@ import {CalendarService} from "./services/calendar.service";
 import {EventsService} from "./services/events.service";
 import {CalendarRoutingModule} from "./calendar-routing.module";
 import {MonthPipe} from './pipes/month.pipe';
+import { EventsComponent } from './components/events/events.component';
 
 @NgModule({
   imports: [
     CommonModule,
     CalendarRoutingModule,
   ],
-  declarations: [CalendarComponent, CalendarSelectComponent, CalendarDayComponent, MonthPipe],
+  declarations: [CalendarComponent, CalendarSelectComponent, CalendarDayComponent, MonthPipe, EventsComponent],
   providers: [CalendarService, EventsService]
 })
 export class CalendarModule { }
