@@ -1,0 +1,24 @@
+.calendar__day, .calendar__offset {
+  width: 130px;
+  height: 130px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 130px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 1.5rem;
+}
+
+.calendar__day_selected {
+  background-color: #44a4ff;
+  color: #ffffff;
+
+}
+
+.calendar__offset {
+
+
+}

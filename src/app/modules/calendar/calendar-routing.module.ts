@@ -1,20 +1,20 @@
+/**
+ * Created by yazun on 24.04.2017.
+ */
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
-import {CalendarService} from "./services/calendar.service";
 import {CalendarComponent} from "./components/calendar/calendar.component";
 
 const routes: Routes = [
   {
     path: '',
-    component: CalendarComponent
+    component: CalendarComponent,
+
   }
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(routes)
-  ],
-  declarations: [CalendarService],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CalendarModule { }
+export class CalendarRoutingModule { }

@@ -1,0 +1,30 @@
+
+.calendar {
+  max-width: 910px;
+  margin: 0 auto;
+
+}
+
+.calendar__controls {
+  display: flex;
+  justify-content: space-around;
+}
+
+.calendar__week {
+
+}
+
+.calendar__weekday {
+  width: 130px;
+  height: 130px;
+  transition: background-color .3s ease-in-out, color .3s ease-in-out;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 130px;
+  pointer-events: none;
+}
+
+app-calendar-day {
+  font-size: 0;
+}
