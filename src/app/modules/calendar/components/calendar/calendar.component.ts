@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {TitleService} from "../../../../services/title.service";
+import {CalendarService} from "../../services/calendar.service";
 
 @Component({
   selector: 'app-calendar',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalendarComponent implements OnInit {
 
-  constructor() { }
+  days: number;
+
+  constructor(
+    private titleService: TitleService,
+    private calendarService: CalendarService
+  ) {
+
+
+  }
 
   ngOnInit() {
+    this.titleService.setTitle('Календарь');
+    this.calendarService
+      .dayCount$
+      .subscribe(dayCount => this.days = dayCount);
+    this.calendarService.init();
   }
 
 }

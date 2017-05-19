@@ -1,3 +1,14 @@
-<p>
-  calendar works!
-</p>
+<div class="calendar">
+  <div class="calendar__controls">
+    <app-calendar-select [prop]="'month'"></app-calendar-select>
+    <app-calendar-select [prop]="'year'"></app-calendar-select>
+  </div>
+  <div class="calendar__view">
+    <div class="calendar__week">
+      <div class="calendar__weekday" *ngFor="let weekday of ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']">{{weekday}}</div>
+    </div>
+    <div class="calendar__days">
+      <app-calendar-day [dayCount]="days"></app-calendar-day>
+    </div>
+  </div>
+</div>
