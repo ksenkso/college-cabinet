@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {CalendarService} from "../../services/calendar.service";
 
 @Component({
   selector: 'app-calendar-day',
@@ -7,9 +8,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalendarDayComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  dayCount: number;
+
+  offset: Array<any>;
+
+  selected: number|null;
+
+  get days(): Array<any> {
+    const days = [];
+    const dc = this.dayCount;
+    for (let i = 0; i < dc; i++) {
+      days.push(i);
+    }
+    return days;
+  }
+
+  constructor(private calendarService: CalendarService) { }
 
   ngOnInit() {
+    this.calendarService
+      .offset$
+      .subscribe(newOffset => this.offset = Array(newOffset));
+
+    this.calendarService
+      .selected$
+      .subscribe(selected => this.selected = selected);
+  }
+
+  select(num: number) {
+
+    this.calendarService.select(num)
   }
 
 }

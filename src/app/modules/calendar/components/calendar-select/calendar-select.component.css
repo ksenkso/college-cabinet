@@ -1,0 +1,15 @@
+.calendar__select {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.select__value {
+  vertical-align: middle;
+  font-size: 24px;
+}
+
+.select__arrow {
+
+  vertical-align: middle;
+  cursor: pointer;
+}
