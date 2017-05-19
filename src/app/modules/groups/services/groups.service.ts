@@ -5,7 +5,7 @@ import {Group} from "../../../interfaces/group";
 @Injectable()
 export class GroupsService {
 
-  private endpoint: string = '/api/groups';
+  private endpoint: string = '/groups';
 
 
   constructor(private http: Http) { }
@@ -14,38 +14,38 @@ export class GroupsService {
     return this.http.post(this.endpoint, group)
       .toPromise()
       .then(res => res.json() as Group)
-      .catch(this.handleError)
+      .catch(GroupsService.handleError)
   }
 
   saveGroup(group: Group): Promise<Group> {
     return this.http.put(`${this.endpoint}/${group.group_id}`, group)
       .toPromise()
       .then(res => res.json() as Group)
-      .catch(this.handleError)
+      .catch(GroupsService.handleError)
   }
 
   getGroups(): Promise<Group[]> {
     return this.http.get(this.endpoint)
       .toPromise()
       .then(res => res.json() as Group[])
-      .catch(this.handleError)
+      .catch(GroupsService.handleError)
   }
 
   getGroup(id: number|string): Promise<Group> {
     return this.http.get(`${this.endpoint}/${id}`)
       .toPromise()
       .then(res => res.json() as Group)
-      .catch(this.handleError)
+      .catch(GroupsService.handleError)
   }
 
   deleteGroup(id: number|string): Promise<boolean> {
     return this.http.delete(`${this.endpoint}/${id}`)
       .toPromise()
       .then(res => res.json() as boolean)
-      .catch(this.handleError)
+      .catch(GroupsService.handleError)
   }
 
-  handleError(err) {
+  static handleError(err) {
     console.error(err);
   }
 }

@@ -26,16 +26,16 @@ export class AuthService {
     }
   }
 
-  getTokenAuthHeaders(): Headers|boolean {
+  getTokenAuthHeaders(): Headers {
     const token = localStorage.getItem('token');
+    const headers = new Headers();
     if (token) {
-      const headers = new Headers();
       headers.append('Authorization', `Bearer ${token}`);
-      return headers;
+
     } else {
       this.router.navigate(['/auth/login']);
-      return false;
     }
+    return headers;
   }
 
   static getBasicAuthHeaders(username: string, password: string): Headers {
