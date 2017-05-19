@@ -13,7 +13,9 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
-    return this.checkLogin(state.url)
+    const routeName = route.data.name ? route.data.name : 'anon';
+
+    return this.checkLogin(state.url, routeName)
       .catch(err => {
         console.error(err);
         this.router.navigate(['/auth/login']);
@@ -21,11 +23,11 @@ export class AuthGuard implements CanActivate {
 
   }
 
-  private checkLogin(redirectUrl: string): Promise<boolean> {
+  private checkLogin(redirectUrl: string, routeName: string): Promise<boolean> {
 
     this.authService.redirtectUrl = redirectUrl;
 
     return this.authService
-      .try();
+      .try(routeName);
   }
 }

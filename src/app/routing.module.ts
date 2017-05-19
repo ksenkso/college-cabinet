@@ -15,18 +15,21 @@ const routes: Routes = [
       {
         path: 'students',
         loadChildren: './modules/students/students.module#StudentsModule',
-        canActivate: [AuthGuard]
-      }
+        canActivate: [AuthGuard],
+        data: {name: 'students'}
+      },
+      {
+        path: 'calendar',
+        loadChildren: './modules/calendar/calendar.module#CalendarModule',
+        canActivate: [AuthGuard],
+        data: {name: 'calendar'}
+      },
     ]
   },
   {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthGuard],
-  },
-  {
     path: 'auth',
-    loadChildren: './modules/auth/auth.module#AuthModule'
+    loadChildren: './modules/auth/auth.module#AuthModule',
+    data: {name: 'login'}
   },
   {
     path: '**',

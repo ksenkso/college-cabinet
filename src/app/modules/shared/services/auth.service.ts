@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers} from '@angular/http';
-import {Subject} from 'rxjs/Subject';
 import {Router} from "@angular/router";
 
 @Injectable()
@@ -14,11 +13,11 @@ export class AuthService {
     private router: Router
   ) { }
 
-  try(): Promise<boolean>  {
+  try(routeName: string): Promise<boolean>  {
     if (localStorage.getItem('user')) {
       const token = localStorage.getItem('token');
       return this.http
-        .get(this.endpoint + '/check', {headers: new Headers({'X-Token': token})})
+        .get(`${this.endpoint}/check/${routeName}`, {headers: new Headers({'X-Token': token})})
         .toPromise()
         .then(isValid => isValid.json() as boolean)
     } else {
