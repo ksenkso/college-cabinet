@@ -1,19 +1,87 @@
 import { Injectable } from '@angular/core';
 import {ApiClientService} from "../../shared/services/api-client.service";
 import { Event } from '../interfaces/event';
+import {CalendarService} from "./calendar.service";
+import {Subject} from "rxjs/Subject";
+import {Observable} from "rxjs/Observable";
+import {EventType} from "../interfaces/event-type";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {min} from "rxjs/operator/min";
 
 @Injectable()
 export class EventsService {
 
-  private endpoint = '/events';
+  private endpoint = '/event';
+  private currentDay: number;
+  private currentMonth: number;
+  private currentYear: number;
+  private events: BehaviorSubject<Event[]> = new BehaviorSubject<Event[]>([]);
+
+  events$: Observable<Event[]> = this.events.asObservable();
 
   constructor(
-    private apiService: ApiClientService
-  ) { }
+    private calendarService: CalendarService,
+    private apiClient: ApiClientService
+  ) {
+    this.calendarService
+      .selected$
+      .subscribe(day => {
+        this.currentDay = day;
+        this.getEvents()
+      });
 
-  getEvents(date: Date): Promise<Event[]> {
-    return this.apiService
-      .get(this.endpoint)
+    this.calendarService
+      .month$
+      .subscribe(month => this.currentMonth = month);
+
+    this.calendarService
+      .year$
+      .subscribe(year => this.currentYear = year);
   }
 
+  getEvents() {
+
+    this.apiClient
+      .get<Event[]>(`${this.endpoint}/${this.currentYear}/${this.currentMonth}/${this.currentDay}`)
+      .then(events => this.events.next(events));
+  }
+
+  getEventTypes(): Promise<EventType[]> {
+    return this.apiClient
+      .get<EventType[]>('/event-type');
+  }
+
+  getEvent(id: number): Promise<Event> {
+    let cached = this.events.getValue().find(event => event.id == id);
+    return cached
+      ? Promise.resolve(cached)
+      : this.apiClient
+        .get(`${this.endpoint}/${id}`);
+
+  }
+
+  createEvent(event: Event): Promise<Event> {
+    const [hours, minutes] = (event.timestamp as string).split(':');
+    event.timestamp = +new Date(this.currentYear, this.currentMonth, this.currentDay, +hours, +minutes);
+    if (event.timestamp) {
+      event.timestamp = event.timestamp / 1000 | 0;
+    }
+    console.log(event.timestamp);
+    return this.apiClient
+      .post<Event>(this.endpoint, event);
+  }
+
+  saveEvent(event: Event): Promise<Event> {
+    return this.apiClient
+      .put<Event>(this.endpoint, event.id, event);
+  }
+
+  deleteEvent(event: Event): Promise<any> {
+    const shouldDelete = confirm(`Удалить событие "${event.title}"?`);
+    return this.apiClient
+      .remove(this.endpoint, event.id)
+      .then(isDeleted => {
+        this.events.next(this.events.getValue().filter(cachedEvent => cachedEvent.id != event.id));
+      })
+  }
 }

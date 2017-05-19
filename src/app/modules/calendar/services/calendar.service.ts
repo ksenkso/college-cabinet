@@ -27,7 +27,11 @@ export class CalendarService {
   }
 
   init() {
-    this.day.next(this.date.getDate());
+    console.log('new instance');
+
+    const d = this.date.getDate();
+    console.log(d);
+    this.day.next(d);
     this.month.next(this.date.getMonth());
     this.year.next(this.date.getFullYear());
 
@@ -106,6 +110,8 @@ export class CalendarService {
   }
 
   select(num: number) {
+    console.log('selected day: ', num);
+
     this.selected.next(num);
   }
 }

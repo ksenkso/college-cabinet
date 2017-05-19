@@ -1,6 +1,7 @@
 <div *ngFor="let number of offset" class="calendar__offset"></div>
 <div
   *ngFor="let day of days"
-  class="{{selected == day ? 'calendar__day calendar__day_selected': 'calendar__day' }}"
-  (click)="select(day)"
+  class="{{selected == (day+1) ? 'calendar__day calendar__day_selected': 'calendar__day' }}"
+  (click)="select(day+1)"
 >{{day+1}}</div>
+{{selected}}

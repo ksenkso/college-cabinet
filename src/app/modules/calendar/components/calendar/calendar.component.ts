@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, SkipSelf} from '@angular/core';
 import {TitleService} from "../../../../services/title.service";
 import {CalendarService} from "../../services/calendar.service";
 
@@ -13,7 +13,7 @@ export class CalendarComponent implements OnInit {
 
   constructor(
     private titleService: TitleService,
-    private calendarService: CalendarService
+    @SkipSelf() private calendarService: CalendarService
   ) {
 
 

@@ -1,3 +1,9 @@
-<p>
-  events works!
-</p>
+<div class="calendar__events">
+  <ng-container *ngIf="events.length">
+    <app-event *ngFor="let event of events" [event]="event"></app-event>
+  </ng-container>
+  <ng-container *ngIf="!events.length">
+    На этот день ничего не запланировано
+  </ng-container>
+  <a routerLink="add-event" class="btn btn-primary">Добавить событие</a>
+</div>
