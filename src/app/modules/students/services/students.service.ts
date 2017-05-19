@@ -25,7 +25,7 @@ export class StudentsService {
 
   getStudents():Promise<Student[]> {
     return this.apiClient
-      .get<Student[]>(`${this.endpoint}`, StudentsService.handleError.bind(this));
+      .get<Student[]>(`${this.endpoint}`);
   }
 
   saveStudent(student: Student): Promise<Student> {

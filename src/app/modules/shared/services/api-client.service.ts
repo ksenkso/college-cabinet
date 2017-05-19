@@ -1,60 +1,86 @@
 import { Injectable } from '@angular/core';
-import {Http} from "@angular/http";
+import {Http, Headers} from "@angular/http";
 import {AuthService} from "./auth.service";
 
 @Injectable()
 export class ApiClientService {
+
+  protected apiURL = 'http://api.journal.ru/v1';
 
   constructor(
     private http: Http,
     private authService: AuthService
   ) { }
 
-  get<T>(endpoint: string, errorHandler?: (reason: any) => any): Promise<T> {
-    const headers: any = this.authService.getTokenAuthHeaders();
+  get<T>(endpoint: string, headers: any = {}): Promise<T> {
+    const requestHeaders: Headers = this.authService.getTokenAuthHeaders();
 
-    if (!headers) return;
+    if (!requestHeaders.get('Authorization')) return;
 
-    return this.http.get(endpoint, {headers: headers})
+    for (let key in headers) {
+      if (headers.hasOwnProperty(key)) {
+        requestHeaders.append(key, headers[key]);
+      }
+    }
+
+    return this.http.get(this.apiURL + endpoint, {headers: requestHeaders})
       .toPromise()
       .then(response => response.json() as T)
-      .catch(errorHandler ? errorHandler : ApiClientService.handleError);
+      .catch(ApiClientService.handleError);
   }
 
-  post<T>(endpoint: string, body: any, errorHandler?: (reason: any) => any): Promise<T> {
-    const headers: any = this.authService.getTokenAuthHeaders();
+  post<T>(endpoint: string, body: any, headers: any = {}): Promise<T> {
+    const requestHeaders: Headers = this.authService.getTokenAuthHeaders();
 
-    if (!headers) return;
+    if (!requestHeaders.get('Authorization')) return;
+
+    for (let key in headers) {
+      if (headers.hasOwnProperty(key)) {
+        requestHeaders.append(key, headers[key]);
+      }
+    }
 
     return this.http
-      .post(endpoint, body, {headers: headers})
+      .post(this.apiURL + endpoint, body, {headers: requestHeaders})
       .toPromise()
       .then(response => response.json() as T)
-      .catch(errorHandler ? errorHandler : ApiClientService.handleError);
+      .catch(ApiClientService.handleError);
   }
 
-  put<T>(endpoint: string, id :number, body: any, errorHandler?: (reason: any) => any): Promise<T> {
-    const headers: any = this.authService.getTokenAuthHeaders();
+  put<T>(endpoint: string, id: number, body: any, headers: any = {}): Promise<T> {
+    const requestHeaders: Headers = this.authService.getTokenAuthHeaders();
 
-    if (!headers) return;
+    if (!requestHeaders.get('Authorization')) return;
+
+    for (let key in headers) {
+      if (headers.hasOwnProperty(key)) {
+        requestHeaders.append(key, headers[key]);
+      }
+    }
 
     return this.http
-      .put(`${endpoint}/${id}`, body, {headers: headers})
+      .put(`${this.apiURL + endpoint}/${id}`, body, {headers: requestHeaders})
       .toPromise()
       .then(response => response.json() as T)
-      .catch(errorHandler ? errorHandler : ApiClientService.handleError);
+      .catch(ApiClientService.handleError);
   }
 
-  remove<T>(endpoint: string, id: number | string, errorHandler?: (reason: any) => any): Promise<T> {
-    const headers: any = this.authService.getTokenAuthHeaders();
+  remove<T>(endpoint: string, id: number | string, headers: any = {}): Promise<T> {
+    const requestHeaders: Headers = this.authService.getTokenAuthHeaders();
 
-    if (!headers) return;
+    if (!requestHeaders.get('Authorization')) return;
+
+    for (let key in headers) {
+      if (headers.hasOwnProperty(key)) {
+        requestHeaders.append(key, headers[key]);
+      }
+    }
 
     return this.http
-      .delete(`${endpoint}/${id}`, {headers: headers})
+      .delete(`${this.apiURL + endpoint}/${id}`, {headers: requestHeaders})
       .toPromise()
       .then(response => response.json() as T)
-      .catch(errorHandler ? errorHandler : ApiClientService.handleError);
+      .catch(ApiClientService.handleError);
   }
 
   static handleError(err: any) {
