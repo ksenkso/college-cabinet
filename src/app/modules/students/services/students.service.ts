@@ -7,7 +7,7 @@ import {Group} from "../../../interfaces/group";
 @Injectable()
 export class StudentsService {
 
-  private endpoint: string = 'http://api.journal.ru/v1/student';
+  private endpoint: string = '/student';
 
   constructor(
     private http: Http,
@@ -41,7 +41,7 @@ export class StudentsService {
 
   getGroups(): Promise<Group[]> {
     return this.apiClient
-      .get<Group[]>('http://api.journal.ru/v1/group');
+      .get<Group[]>('/group');
   }
 
 
