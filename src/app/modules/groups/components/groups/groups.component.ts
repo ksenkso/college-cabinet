@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-groups',
@@ -7,8 +6,6 @@ import {Observable} from "rxjs";
   styleUrls: ['./groups.component.css']
 })
 export class GroupsComponent implements OnInit {
-
-  canCreateGroup: Observable<boolean>;
 
   constructor() { }
 
