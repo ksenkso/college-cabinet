@@ -1,0 +1,7 @@
+<ng-container *ngIf="groups">
+  <div class="group" *ngFor="let group of groups">
+    <h3 class="group__name">{{group.abbreviation}}</h3>
+    <a [routerLink]="['edit', group.id]"><i class="material-icons" >edit</i></a>
+    <i (click)="remove(group)" class="material-icons">delete</i>
+  </div>
+</ng-container>

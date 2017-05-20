@@ -1,15 +1,14 @@
 import {Component, OnInit, OnChanges, Input} from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-//import {Student} from "../../interfaces/student";
 import {Group} from "../../../../interfaces/group";
-import {Router, ActivatedRoute, Params, } from "@angular/router";
+import { ActivatedRoute, Params, } from "@angular/router";
 import {Location} from "@angular/common";
-import {GroupsService} from "../../services/groups.service";
+import {GroupsService} from "../../../shared/services/groups.service";
 
 
 
 @Component({
-  selector: 'app-student-form',
+  selector: 'app-group-form',
   templateUrl: 'group-form.component.html',
   styleUrls: ['group-form.component.css']
 })
@@ -19,10 +18,18 @@ export class GroupFormComponent implements OnInit, OnChanges {
   @Input() group: Group;
   groupForm: FormGroup;
 
+  static get DEFAULT_GROUP_STATE(): Group {
+    return  <Group> {
+      id: null,
+      name: '',
+      abbreviation: '',
+      year: (new Date()).getFullYear()
+    }
+  }
+
   constructor(
     private fb: FormBuilder,
     private groupsService: GroupsService,
-    private router: Router,
     private route: ActivatedRoute,
     private location: Location
   ) {
@@ -31,17 +38,10 @@ export class GroupFormComponent implements OnInit, OnChanges {
   }
 
   createForm() {
-    this.groupForm = this.fb.group({
-      first_name: '',
-      last_name: '',
-      patronymic: '',
-      group_id: '',
-      address: '',
-      phone: ''
-    })
+    this.groupForm = this.fb.group(GroupFormComponent.DEFAULT_GROUP_STATE)
   }
 
-  log(data) {
+  static log(data) {
     console.log(data);
   }
 
@@ -50,13 +50,11 @@ export class GroupFormComponent implements OnInit, OnChanges {
 
     if (this.mode === 'create') {
       this.groupsService.createGroup(this.group)
-        .then(this.log.bind(this))
         .then(this.revert.bind(this))
         .then(this.goBack.bind(this))
     } else {
       console.log('submit', this.group);
       this.groupsService.saveGroup(this.group)
-        .then(this.log.bind(this))
         .then(this.revert.bind(this))
         .then(this.goBack.bind(this))
     }
@@ -73,36 +71,27 @@ export class GroupFormComponent implements OnInit, OnChanges {
   prepareSaveGroup(): Group {
     const formModel = this.groupForm.value;
 
-    const saveGroup: Group = {
-      group_id: formModel.group_id as string,
-      group_name: formModel.group_name as string,
-      group_number: formModel.group_number as string,
+    return {
+      id: this.group.id as number,
+      name: formModel.name as string,
       abbreviation: formModel.abbreviation as string,
-      year: formModel.year as string,
+      year: formModel.year as number,
     };
-    return saveGroup;
   }
 
 
 
 
   ngOnChanges() {
-    this.log(this.group);
+    GroupFormComponent.log(this.group);
     if (!this.group) {
-      this.group = <Group> {
-        group_id: '',
-        group_name: '',
-        group_number: '',
-        abbreviation: '',
-        year: ''
-      };
+      this.group = GroupFormComponent.DEFAULT_GROUP_STATE;
     }
     this.groupForm.reset({
-      group_id: this.group.group_id as string,
-      group_name: this.group.group_name as string,
-      group_number: this.group.group_number as string,
+      id: this.group.id as number,
+      name: this.group.name as string,
       abbreviation: this.group.abbreviation as string,
-      year: this.group.year as string,
+      year: this.group.year as number,
     });
   }
 
@@ -115,13 +104,7 @@ export class GroupFormComponent implements OnInit, OnChanges {
           this.ngOnChanges();
         });
     } else {
-      this.group = <Group> {
-        group_id: '',
-        group_name: '',
-        group_number: '',
-        abbreviation: '',
-        year: ''
-      };
+      this.group = GroupFormComponent.DEFAULT_GROUP_STATE;
     }
 
   }

@@ -24,6 +24,12 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         data: {name: 'calendar'}
       },
+      {
+        path: 'groups',
+        loadChildren: './modules/groups/groups.module#GroupsModule',
+        canActivate: [AuthGuard],
+        data: {name: 'groups'}
+      },
     ]
   },
   {

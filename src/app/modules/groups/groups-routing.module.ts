@@ -4,11 +4,28 @@
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {GroupsComponent} from "./components/groups/groups.component";
+import {GroupEditComponent} from "./components/group-edit/group-edit.component";
+import {GroupCreateComponent} from "./components/group-create/group-create.component";
+import {GroupsListComponent} from "./components/groups-list/groups-list.component";
 
 const routes: Routes = [
   {
     path: '',
-    component: GroupsComponent
+    component: GroupsComponent,
+    children: [
+      {
+        path: '',
+        component: GroupsListComponent
+      }
+    ]
+  },
+  {
+    path: 'edit/:id',
+    component: GroupEditComponent
+  },
+  {
+    path: 'create',
+    component: GroupCreateComponent
   }
 ];
 
@@ -16,4 +33,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class GroupRoutingModule { }
+export class GroupsRoutingModule { }
