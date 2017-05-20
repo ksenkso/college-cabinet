@@ -24,9 +24,7 @@ export class CalendarDayComponent implements OnInit {
     return days;
   }
 
-  constructor(private calendarService: CalendarService) { }
-
-  ngOnInit() {
+  constructor(private calendarService: CalendarService) {
     this.calendarService
       .offset$
       .subscribe(newOffset => this.offset = Array(newOffset));
@@ -34,6 +32,10 @@ export class CalendarDayComponent implements OnInit {
     this.calendarService
       .selected$
       .subscribe(selected => this.selected = selected);
+  }
+
+  ngOnInit() {
+
   }
 
   select(num: number) {
