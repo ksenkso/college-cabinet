@@ -21,7 +21,18 @@ export class StudentListComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle("Список студентов");
-    this.studentsService.getStudents().then(students => this.students = students);
+    this.studentsService.getStudents().then(students$ => {
+      students$.subscribe(students => this.students = students);
+    });
+  }
+
+  remove(student: Student) {
+    const shouldDelete = confirm(`Удалить студента ${student.first_name} ${student.last_name}?`);
+
+    if (shouldDelete) {
+      this.studentsService
+        .remove(student.id)
+    }
   }
 
 }

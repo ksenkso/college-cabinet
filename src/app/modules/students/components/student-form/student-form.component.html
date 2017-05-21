@@ -21,6 +21,11 @@
     </label>
   </div>
   <div class="form-group">
+    <label class="center-block">E-mail:
+      <input type="email" class="form-control" formControlName="email" required>
+    </label>
+  </div>
+  <div class="form-group">
     <label class="center-block">Телефон:
       <input type="tel" class="form-control" formControlName="phone" required>
     </label>
@@ -28,7 +33,7 @@
   <div class="form-group">
     <label class="center-block">Группа:
       <select class="form-control" formControlName="group_id" required>
-        <option *ngFor="let group of groups" [value]="group.group_id">{{group.group_name}}</option>
+        <option *ngFor="let group of groups" [value]="group.id">{{group.abbreviation}}</option>
       </select>
     </label>
   </div>
