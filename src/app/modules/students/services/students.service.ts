@@ -3,11 +3,16 @@ import { Http } from '@angular/http';
 import {Student} from "../interfaces/student";
 import {ApiClientService} from "../../shared/services/api-client.service";
 import {Group} from "../../../interfaces/group";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class StudentsService {
 
   private endpoint: string = '/student';
+  private students: BehaviorSubject<Student[]> = new BehaviorSubject<Student[]>([]);
+
+  students$: Observable<Student[]> = this.students.asObservable();
 
   constructor(
     private http: Http,
@@ -23,15 +28,17 @@ export class StudentsService {
 
   }
 
-  getStudents():Promise<Student[]> {
+  getStudents():Promise<Observable<Student[]>> {
     return this.apiClient
-      .get<Student[]>(`${this.endpoint}`);
+      .get<Student[]>(`${this.endpoint}`)
+      .then(students => this.students.next(students))
+      .then(() => this.students$)
   }
 
   saveStudent(student: Student): Promise<Student> {
     console.log('service:submit', student);
     return this.apiClient
-      .put<Student>(this.endpoint, +student.student_id, student);
+      .put<Student>(this.endpoint, +student.id, student);
   }
 
   createStudent(student: Student): Promise<Student> {
@@ -50,4 +57,11 @@ export class StudentsService {
     console.error(err);
   }
 
+  remove(studentId: number) {
+    this.apiClient
+      .remove(this.endpoint, studentId)
+      .then(() => {
+        this.students.next(this.students.getValue().filter(student => student.id != studentId));
+      })
+  }
 }

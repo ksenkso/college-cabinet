@@ -19,6 +19,18 @@ export class StudentFormComponent implements OnInit, OnChanges {
   studentForm: FormGroup;
   groups: Group[] = [];
 
+  static get DEFAULT_STUDENT_STATE() {
+    return <Student> {
+      first_name: '',
+      last_name: '',
+      patronymic: '',
+      email: '',
+      group_id: null,
+      address: '',
+      phone: ''
+    };
+  }
+
   constructor(
     private fb: FormBuilder,
     private studentsService: StudentsService,
@@ -30,14 +42,7 @@ export class StudentFormComponent implements OnInit, OnChanges {
   }
 
   createForm() {
-    this.studentForm = this.fb.group({
-      first_name: '',
-      last_name: '',
-      patronymic: '',
-      group_id: '',
-      address: '',
-      phone: ''
-    })
+    this.studentForm = this.fb.group(StudentFormComponent.DEFAULT_STUDENT_STATE);
   }
 
   static log(data) {
@@ -73,13 +78,14 @@ export class StudentFormComponent implements OnInit, OnChanges {
     const formModel = this.studentForm.value;
 
     return <Student>{
-      student_id: this.student.student_id,
+      id: this.student.id,
       first_name: formModel.first_name as string,
       last_name: formModel.last_name as string,
       patronymic: formModel.patronymic as string,
       address: formModel.address as string,
+      email: formModel.email as string,
       phone: formModel.phone as string,
-      group_id: formModel.group_id as string,
+      group_id: formModel.group_id as number,
     };
   }
 
@@ -89,14 +95,7 @@ export class StudentFormComponent implements OnInit, OnChanges {
   ngOnChanges() {
     StudentFormComponent.log(this.student);
     if (!this.student) {
-      this.student = <Student> {
-        first_name: '',
-        last_name: '',
-        patronymic: '',
-        group_id: '',
-        address: '',
-        phone: ''
-      };
+      this.student = StudentFormComponent.DEFAULT_STUDENT_STATE;
     }
     this.studentForm.reset({
       first_name: this.student.first_name as string,
@@ -104,7 +103,8 @@ export class StudentFormComponent implements OnInit, OnChanges {
       patronymic: this.student.patronymic as string,
       address: this.student.address as string,
       phone: this.student.phone as string,
-      group_id: this.student.group_id as string,
+      email: this.student.email as string,
+      group_id: this.student.group_id as number,
     });
     //this.studentForm.reset(this.student);
   }
@@ -123,14 +123,7 @@ export class StudentFormComponent implements OnInit, OnChanges {
           this.ngOnChanges();
         });
     } else {
-      this.student = <Student> {
-        first_name: '',
-        last_name: '',
-        patronymic: '',
-        group_id: '',
-        address: '',
-        phone: ''
-      };
+      this.student = StudentFormComponent.DEFAULT_STUDENT_STATE;
     }
 
   }
