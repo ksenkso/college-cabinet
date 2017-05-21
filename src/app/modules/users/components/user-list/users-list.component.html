@@ -1,0 +1,7 @@
+<ul class="students__list c-list" *ngIf="users.length">
+  <li class="student c-list__item" *ngFor="let user of users">
+    <h2>{{user.last_name}} {{user.first_name}} {{user.patronymic}}</h2>
+    <a [routerLink]="['edit', user.id]"><i class="material-icons" >edit</i></a>
+    <i (click)="remove(user)" class="material-icons">delete</i>
+  </li>
+</ul>
