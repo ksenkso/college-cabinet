@@ -1,0 +1,9 @@
+<ng-container *ngIf="documents">
+  <div
+    *ngFor="let document of documents"
+    class="document"
+  >
+    <span class="document__title">{{document.title}}</span>
+    <span class="btn btn-primary document__download" (click)="download(document.type_id)">Сформировать</span>
+  </div>
+</ng-container>

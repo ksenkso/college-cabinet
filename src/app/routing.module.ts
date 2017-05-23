@@ -36,6 +36,12 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         data: {name: 'groups'}
       },
+      {
+        path: 'documents',
+        loadChildren: './modules/documents/documents.module#DocumentsModule',
+        canActivate: [AuthGuard],
+        data: {name: 'documents'}
+      },
     ]
   },
   {
