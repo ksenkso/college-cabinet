@@ -7,5 +7,9 @@ export interface Event {
   user_id?: number,
   timestamp?: string|number,
   reported: boolean,
+  report_type: number,
+  form: string,
+  responsible: string,
+  results: string,
   type?: EventType
 }

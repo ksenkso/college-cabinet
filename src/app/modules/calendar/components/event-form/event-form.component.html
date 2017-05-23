@@ -7,7 +7,13 @@
   </div>
   <div class="form-group">
     <label class="center-block">Включить в отчёт:
-      <input type="checkbox" class="form-control" formControlName="reported">
+      <input type="checkbox" class="form-control" formControlName="reported" (change)="clearAdditionalFields()">
+    </label>
+    <label *ngIf="eventForm.get('reported').value" class="center-block">Тип отчёта:
+      <select formControlName="report_type" class="form-control">
+        <option value="1">Анализ деятельности</option>
+        <option value="2">Дневник</option>
+      </select>
     </label>
   </div>
   <div class="form-group">
@@ -27,6 +33,23 @@
       <textarea formControlName="description" cols="30" rows="10"></textarea>
     </label>
   </div>
+  <ng-container *ngIf="eventForm.get('reported').value && eventForm.get('report_type').value==1">
+    <div class="form-group">
+      <label class="center-block">Форма проведения:
+        <input class="form-control" formControlName="form" required>
+      </label>
+    </div>
+    <div class="form-group">
+      <label class="center-block">Ответственый:
+        <input class="form-control" formControlName="responsible" required>
+      </label>
+    </div>
+    <div class="form-group">
+      <label class="center-block">Результативность:
+        <input class="form-control" formControlName="results" required>
+      </label>
+    </div>
+  </ng-container>
   <div style="margin-bottom: 1em">
     <button type="submit"
             [disabled]="!eventForm.valid" class="btn btn-success">Save</button> &nbsp;

@@ -19,7 +19,11 @@ export class EventFormComponent implements OnInit {
       description: '',
       type_id: 1,
       timestamp: '00:00',
-      reported: false
+      reported: false,
+      report_type: 0,
+      form: '',
+      responsible: '',
+      results: ''
     };
   }
 
@@ -43,7 +47,6 @@ export class EventFormComponent implements OnInit {
   }
 
   ngOnInit() {
-
 
     this.eventsService
       .getEventTypes()
@@ -105,7 +108,11 @@ export class EventFormComponent implements OnInit {
       description: formModel.description,
       type_id: formModel.type_id,
       timestamp: formModel.timestamp,
-      reported: formModel.reported
+      reported: formModel.reported,
+      report_type: formModel.report_type,
+      results: formModel.results,
+      responsible: formModel.responsible,
+      form: formModel.form
     };
   }
 
@@ -118,8 +125,18 @@ export class EventFormComponent implements OnInit {
       description: this.event.description as string,
       type_id: this.event.type_id as number,
       timestamp: this.event.timestamp,
-      reported: this.event.reported
+      reported: this.event.reported,
+      report_type: this.event.report_type,
+      results: this.event.results,
+      responsible: this.event.responsible,
+      form: this.event.form
     });
+  }
+
+  clearAdditionalFields() {
+    this.eventForm.get('form').reset();
+    this.eventForm.get('results').reset();
+    this.eventForm.get('responsible').reset();
   }
 
 

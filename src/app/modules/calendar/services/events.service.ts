@@ -2,11 +2,9 @@ import { Injectable } from '@angular/core';
 import {ApiClientService} from "../../shared/services/api-client.service";
 import { Event } from '../interfaces/event';
 import {CalendarService} from "./calendar.service";
-import {Subject} from "rxjs/Subject";
 import {Observable} from "rxjs/Observable";
 import {EventType} from "../interfaces/event-type";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {min} from "rxjs/operator/min";
 
 @Injectable()
 export class EventsService {
@@ -66,7 +64,7 @@ export class EventsService {
     if (event.timestamp) {
       event.timestamp = event.timestamp / 1000 | 0;
     }
-    console.log(event.timestamp);
+    console.log('From service: ', this.currentYear, this.currentMonth, this.currentDay, event.timestamp);
     return this.apiClient
       .post<Event>(this.endpoint, event);
   }
@@ -77,10 +75,9 @@ export class EventsService {
   }
 
   deleteEvent(event: Event): Promise<any> {
-    const shouldDelete = confirm(`Удалить событие "${event.title}"?`);
     return this.apiClient
       .remove(this.endpoint, event.id)
-      .then(isDeleted => {
+      .then(() => {
         this.events.next(this.events.getValue().filter(cachedEvent => cachedEvent.id != event.id));
       })
   }
