@@ -6,6 +6,7 @@ import {ActivatedRoute, Params, } from "@angular/router";
 import {Location} from "@angular/common";
 import {UserService} from "../../services/users.service";
 import {Role} from "../../interfaces/role";
+import {TitleService} from "../../../../services/title.service";
 
 @Component({
   selector: 'app-user-form',
@@ -41,7 +42,8 @@ export class UserFormComponent implements OnInit, OnChanges {
     private fb: FormBuilder,
     private userService: UserService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private titleService: TitleService
   ) {
     console.log('mode: ', this.mode);
     this.createForm();
@@ -87,12 +89,15 @@ export class UserFormComponent implements OnInit, OnChanges {
     if (this.mode === 'update') {
       this.route.params
         .switchMap((params: Params) => this.userService.getUser(+params['id']))
-        .subscribe((student: User) => {
-          this.user = student;
+        .subscribe((user: User) => {
+          this.user = user;
+          this.titleService.setTitle(`Изменить пользователя: ${this.user.last_name}`);
           this.ngOnChanges();
         });
     } else {
+      this.titleService.setTitle(`Добавить пользователя`);
       this.user = UserFormComponent.DEFAULT_USER_STATE;
+
     }
 
   }

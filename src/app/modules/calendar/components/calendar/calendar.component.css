@@ -1,8 +1,10 @@
 
 .calendar {
-  max-width: 910px;
+  max-width: 700px;
   margin: 0 auto;
-
+  float: left;
+  border-right: 1px solid #eeeeee;
+  box-sizing: content-box;
 }
 
 .calendar__controls {
@@ -15,16 +17,59 @@
 }
 
 .calendar__weekday {
-  width: 130px;
-  height: 130px;
+  width: 100px;
+  height: 100px;
   transition: background-color .3s ease-in-out, color .3s ease-in-out;
   display: inline-block;
   text-align: center;
   vertical-align: middle;
-  line-height: 130px;
+  line-height: 100px;
   pointer-events: none;
 }
 
 app-calendar-day {
   font-size: 0;
+}
+
+.calendar__events {
+  float: left;
+  margin-left: 1rem;
+}
+
+@media screen  and (max-width: 1170px) {
+  .calendar__events {
+    margin: 0 auto;
+    float: none;
+  }
+
+  .calendar {
+    float: none;
+    border: none;
+  }
+
+}
+
+@media screen  and (max-width: 760px) {
+  .calendar {
+    max-width: 490px;
+  }
+
+  .calendar__weekday {
+    line-height: 70px;
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media screen  and (max-width: 510px) {
+
+  .calendar {
+    max-width: 350px;
+  }
+
+  .calendar__weekday {
+    line-height: 50px;
+    width: 50px;
+    height: 50px;
+  }
 }

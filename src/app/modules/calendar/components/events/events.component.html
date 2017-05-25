@@ -2,8 +2,8 @@
   <ng-container *ngIf="events.length">
     <app-event *ngFor="let event of events" [event]="event"></app-event>
   </ng-container>
-  <ng-container *ngIf="!events.length">
+  <p class="events__empty" *ngIf="!events.length">
     На этот день ничего не запланировано
-  </ng-container>
+  </p>
   <a routerLink="add-event" class="btn btn-primary">Добавить событие</a>
 </div>

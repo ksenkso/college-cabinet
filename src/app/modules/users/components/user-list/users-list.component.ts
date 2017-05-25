@@ -13,24 +13,24 @@ export class UserListComponent implements OnInit {
   users: User[] = [];
 
   constructor(
-    private studentsService: UserService,
+    private userService: UserService,
     private titleService: TitleService
   ) {
 
   }
 
   ngOnInit() {
-    this.titleService.setTitle("Список студентов");
-    this.studentsService.getUsers().then(students$ => {
+    this.titleService.setTitle("Список пользователей");
+    this.userService.getUsers().then(students$ => {
       students$.subscribe(students => this.users = students);
     });
   }
 
   remove(student: User) {
-    const shouldDelete = confirm(`Удалить студента ${student.first_name} ${student.last_name}?`);
+    const shouldDelete = confirm(`Удалить пользователя ${student.first_name} ${student.last_name}?`);
 
     if (shouldDelete) {
-      this.studentsService
+      this.userService
         .remove(student.id)
     }
   }

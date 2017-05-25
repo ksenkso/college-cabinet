@@ -1,15 +1,19 @@
 .calendar__day, .calendar__offset {
-  width: 130px;
-  height: 130px;
+  width: 100px;
+  height: 100px;
   display: inline-block;
   text-align: center;
   vertical-align: middle;
-  line-height: 130px;
+  line-height: 100px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   font-size: 1.5rem;
+}
+
+.calendar__day {
+  cursor: pointer;
 }
 
 .calendar__day_selected {
@@ -18,7 +22,20 @@
 
 }
 
-.calendar__offset {
+@media screen  and (max-width: 760px) {
 
+  .calendar__day, .calendar__offset {
+    line-height: 70px;
+    width: 70px;
+    height: 70px;
+  }
+}
 
+@media screen  and (max-width: 510px) {
+
+  .calendar__day, .calendar__offset {
+    line-height: 50px;
+    width: 50px;
+    height: 50px;
+  }
 }

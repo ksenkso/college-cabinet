@@ -8,10 +8,10 @@ import {TitleService} from "../../../../services/title.service";
 })
 export class UserEditComponent implements OnInit {
 
-  constructor(private titleService: TitleService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.titleService.setTitle("Изменить студента");
+
   }
 
 }

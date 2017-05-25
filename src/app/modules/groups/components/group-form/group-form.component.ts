@@ -4,6 +4,7 @@ import {Group} from "../../../../interfaces/group";
 import { ActivatedRoute, Params, } from "@angular/router";
 import {Location} from "@angular/common";
 import {GroupsService} from "../../../shared/services/groups.service";
+import {TitleService} from "../../../../services/title.service";
 
 
 
@@ -31,7 +32,8 @@ export class GroupFormComponent implements OnInit, OnChanges {
     private fb: FormBuilder,
     private groupsService: GroupsService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private titleService: TitleService
   ) {
     console.log('mode: ', this.mode);
     this.createForm();
@@ -79,9 +81,6 @@ export class GroupFormComponent implements OnInit, OnChanges {
     };
   }
 
-
-
-
   ngOnChanges() {
     GroupFormComponent.log(this.group);
     if (!this.group) {
@@ -97,13 +96,16 @@ export class GroupFormComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     if (this.mode === 'update') {
+
       this.route.params
         .switchMap((params: Params) => this.groupsService.getGroup(+params['id']))
         .subscribe((group: Group) => {
           this.group = group;
+          this.titleService.setTitle(`Изменить группу: ${this.group.abbreviation}`);
           this.ngOnChanges();
         });
     } else {
+      this.titleService.setTitle(`Добавить группу`);
       this.group = GroupFormComponent.DEFAULT_GROUP_STATE;
     }
 
