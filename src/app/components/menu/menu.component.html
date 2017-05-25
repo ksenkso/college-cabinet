@@ -2,7 +2,11 @@
   <app-header></app-header>
   <ul class="menu__items">
     <li *ngFor="let item of menu" class="menu__item">
-      <a class="menu__link" (click)="toggle()" [routerLink]="'/'+item.path">{{item.title}}</a>
+      <a *ngIf="item.external;else internalLink" href="{{item.path}}">{{item.title}}</a>
+      <ng-template #internalLink>
+
+        <a class="menu__link" (click)="toggle()" [routerLink]="'/'+item.path">{{item.title}}</a>
+      </ng-template>
     </li>
   </ul>
 </nav>
