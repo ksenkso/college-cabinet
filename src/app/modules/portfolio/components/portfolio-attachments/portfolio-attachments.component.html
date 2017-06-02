@@ -1,0 +1,9 @@
+<ng-container *ngIf="photo;else loader">
+  <img src="{{photo.thumbnail}}" alt="{{photo.title}}">
+</ng-container>
+<ng-container *ngIf="attachments;else loader">
+  <div class="row attachment" *ngFor="let file of attachments">
+    <img src="{{file.thumbnail}}" alt="{{file.title}}">
+  </div>
+</ng-container>
+<div #loader class="loader">Loading...</div>

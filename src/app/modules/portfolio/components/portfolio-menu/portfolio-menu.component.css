@@ -1,0 +1,16 @@
+.row {
+  font-size: 2.3rem;
+  display: flex;
+  justify-content: space-between;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid currentColor;
+  margin: 1rem;
+  padding: 2rem;
+  align-items:center;
+}
+
+.material-icons {
+  vertical-align: middle;
+}
