@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {DocumentsService} from "../../services/documents.service";
+import {DocumentsService} from "../../../shared/services/documents.service";
 
 @Component({
   selector: 'app-documents-list',

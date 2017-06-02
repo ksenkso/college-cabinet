@@ -1,0 +1,36 @@
+<table class="table table-bordered table-condensed">
+  <thead>
+  <tr>
+    <td>№</td>
+    <td>Наименование предметов, ПМ, МДК</td>
+    <td>Оценка</td>
+    <td></td>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngIf="grades">
+    <tr *ngFor="let course of grades; let i=index">
+      <td>{{i+1}}</td>
+      <td
+        contenteditable
+        [textContent]="course.name"
+        (input)="course.name=$event.target.textContent;markAsUpdated(course.id ? course.id : i)"
+      >
+        {{course.name}}
+      </td>
+      <td
+        contenteditable
+        [textContent]="course.value"
+        (input)="course.value=$event.target.textContent;markAsUpdated(course.id ? course.id : i)"
+      >
+        {{course.value}}
+      </td>
+      <td><i class="material-icons" (click)="deleteRow(course.id, i)">delete</i></td>
+
+    </tr>
+  </ng-container>
+  </tbody>
+</table>
+<button type="button" class="btn btn-primary" (click)="goBack()">Назад</button>
+<button type="button" class="btn btn-primary" (click)="addRow()">Добавить</button>
+<button type="button" class="btn btn-primary" (click)="save()">Сохранить</button>

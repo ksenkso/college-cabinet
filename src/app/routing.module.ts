@@ -42,6 +42,12 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         data: {name: 'documents'}
       },
+      {
+        path: 'portfolio',
+        loadChildren: './modules/portfolio/portfolio.module#PortfolioModule',
+        canActivate: [AuthGuard],
+        data: {name: 'portfolio'}
+      },
     ]
   },
   {

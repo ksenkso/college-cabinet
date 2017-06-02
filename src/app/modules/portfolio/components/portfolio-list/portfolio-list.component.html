@@ -1,0 +1,6 @@
+<ng-container *ngIf="list.length">
+  <div class="student" *ngFor="let student of list">
+    <h3 class="student__name">{{student.last_name}} {{student.first_name}} {{student.patronymic}}</h3>
+    <a class="btn btn-primary" [routerLink]="['student', student.id]">Редактировать</a>
+  </div>
+</ng-container>

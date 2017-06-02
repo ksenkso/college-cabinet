@@ -1,0 +1,52 @@
+<table class="table table-bordered table-condensed">
+  <thead>
+  <tr>
+    <td>№</td>
+    <td>Название</td>
+    <td>Руководитель</td>
+    <td>Оценка</td>
+    <td>Рецензент</td>
+    <td></td>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngIf="works">
+    <tr *ngFor="let work of works; let i=index">
+      <td>{{i+1}}</td>
+      <td
+        contenteditable
+        [textContent]="work.name"
+        (input)="work.name=$event.target.textContent;markAsUpdated(work.id ? work.id : i)"
+      >
+        {{work.name}}
+      </td>
+      <td
+        contenteditable
+        [textContent]="work.chef"
+        (input)="work.chef=$event.target.textContent;markAsUpdated(work.id ? work.id : i)"
+      >
+        {{work.chef}}
+      </td>
+      <td
+        contenteditable
+        [textContent]="work.value"
+        (input)="work.value=$event.target.textContent;markAsUpdated(work.id ? work.id : i)"
+      >
+        {{work.value}}
+      </td>
+      <td
+        contenteditable
+        [textContent]="work.reviewer"
+        (input)="work.reviewer=$event.target.textContent;markAsUpdated(work.id ? work.id : i)"
+      >
+        {{work.reviewer}}
+      </td>
+      <td><i class="material-icons" (click)="deleteRow(work.id, i)">delete</i></td>
+
+    </tr>
+  </ng-container>
+  </tbody>
+</table>
+<button type="button" class="btn btn-primary" (click)="goBack()">Назад</button>
+<button type="button" class="btn btn-primary" (click)="addRow()">Добавить</button>
+<button type="button" class="btn btn-primary" (click)="save()">Сохранить</button>
