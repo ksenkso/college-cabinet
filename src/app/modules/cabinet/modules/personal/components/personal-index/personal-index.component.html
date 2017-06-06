@@ -1,0 +1,15 @@
+<h2>{{user.last_name}} {{user.first_name}} {{user.patronymic}}</h2>
+<h3>Личные данные педагога</h3>
+<ng-container *ngIf="meta; else noInfo">
+  <p>Стаж работы: {{meta.experience || 'Неизвестно'}}</p>
+  <p>Категория: {{meta.category || 'Неизвестно'}}</p>
+  <p>Стаж работы: {{meta.attestation_period || 'Неизвестно'}}</p>
+  <p>Стаж работы: {{meta.teacher_theme || 'Неизвестно'}}</p>
+</ng-container>
+<ng-template #noInfo  >
+  <div class="alert alert-info">
+    Нет информации
+  </div>
+</ng-template>
+<a routerLink="edit" class="btn btn-primary">Изменить данные</a>
+

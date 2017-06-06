@@ -48,6 +48,12 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         data: {name: 'portfolio'}
       },
+      {
+        path: 'cabinet',
+        loadChildren: './modules/cabinet/cabinet.module#CabinetModule',
+        canActivate: [AuthGuard],
+        data: {name: 'cabinet'}
+      }
     ]
   },
   {

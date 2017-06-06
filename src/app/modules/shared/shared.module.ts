@@ -6,12 +6,13 @@ import {NotFoundComponent} from "./compoents/not-found/not-found.component";
 import {ApiClientService} from "./services/api-client.service";
 import {GroupsService} from "./services/groups.service";
 import {DocumentsService} from "./services/documents.service";
+import {UserService} from "./services/users.service";
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [NotFoundComponent],
-  providers: [AuthService, AuthGuard, ApiClientService, GroupsService, DocumentsService]
+  providers: [AuthService, AuthGuard, ApiClientService, GroupsService, DocumentsService, UserService]
 })
 export class SharedModule { }

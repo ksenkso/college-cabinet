@@ -1,0 +1,48 @@
+<form class="form form_meta" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+  <div class="form-group" formGroupName="experience">
+    <label class="center-block">
+      <input type="text" formControlName="value" required>
+  experience
+      </label>
+    </div>
+  <div class="form-group" formGroupName="category">
+    <label class="center-block">
+      <input type="text" formControlName="value" required>
+  category
+      </label>
+    </div>
+  <div class="form-group" formGroupName="attestation_period">
+    <label class="center-block">
+      <input type="text" formControlName="value" required>
+  attestation_period
+      </label>
+    </div>
+  <div class="form-group" formGroupName="college_theme">
+    <label class="center-block">
+      <input type="text" formControlName="value" required>
+  college_theme
+      </label>
+    </div>
+  <div class="form-group" formGroupName="teacher_theme">
+    <label class="center-block">
+      <input type="text" formControlName="value" required>
+  teacher_theme
+      </label>
+    </div>
+  <div class="form-group" formGroupName="info">
+    <label class="center-block">
+      <input type="text" formControlName="value" required>
+  info
+      </label>
+    </div>
+
+
+  <div style="margin-bottom: 1em">
+    <button type="submit"
+            [disabled]="!form.valid" class="btn btn-success">Save</button> &nbsp;
+    <button type="reset" (click)="revert()"
+            [disabled]="form.pristine" class="btn btn-danger">Revert</button>
+  </div>
+</form>
+{{form.value | json}}
