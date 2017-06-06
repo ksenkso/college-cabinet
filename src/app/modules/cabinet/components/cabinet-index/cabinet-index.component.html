@@ -1,0 +1,10 @@
+<div class="tabs">
+  <a class="tab{{activeTab == 'activities' ? ' tab_active' : ''}}" (click)="setActiveTab('activities')" routerLink="activities">Деятельность</a>
+  <a class="tab{{activeTab == 'collective' ? ' tab_active' : ''}}" (click)="setActiveTab('collective')" routerLink="collective">Работа с коллективом</a>
+  <a class="tab{{activeTab == 'education' ? ' tab_active' : ''}}" (click)="setActiveTab('education')" routerLink="education">Воспитательная работа</a>
+  <a class="tab{{activeTab == 'parents' ? ' tab_active' : ''}}" (click)="setActiveTab('parents')" routerLink="parents">работа с родителями</a>
+  <a class="tab{{activeTab == 'personal' ? ' tab_active' : ''}}" (click)="setActiveTab('personal')" routerLink="personal">Личная информация</a>
+</div>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
