@@ -5,6 +5,7 @@ import {EventType} from "../../interfaces/event-type";
 import {EventsService} from "../../services/events.service";
 import {ActivatedRoute, Params} from "@angular/router";
 import {Location} from "@angular/common";
+import {TitleService} from "../../../../services/title.service";
 
 @Component({
   selector: 'app-event-form',
@@ -40,13 +41,16 @@ export class EventFormComponent implements OnInit {
     private fb: FormBuilder,
     private eventsService: EventsService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private ts: TitleService
   ) {
     this.createForm();
 
   }
 
   ngOnInit() {
+
+    this.ts.setTitle(this.mode === 'create' ? 'Добавить событие' : 'Редактировать событие');
 
     this.eventsService
       .getEventTypes()

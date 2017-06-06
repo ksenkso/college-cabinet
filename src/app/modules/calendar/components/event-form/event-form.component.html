@@ -6,7 +6,7 @@
     </label>
   </div>
   <div class="form-group">
-    <label class="center-block">Включить в отчёт:
+    <label>Включить в отчёт:
       <input type="checkbox" class="form-control" formControlName="reported" (change)="clearAdditionalFields()">
     </label>
     <label *ngIf="eventForm.get('reported').value" class="center-block">Тип отчёта:
@@ -29,9 +29,8 @@
     </label>
   </div>
   <div class="form-group">
-    <label class="center-block">Описание:
-      <textarea formControlName="description" cols="30" rows="10"></textarea>
-    </label>
+    <label class="center-block">Описание:</label>
+    <textarea formControlName="description" cols="30" rows="10"></textarea>
   </div>
   <ng-container *ngIf="eventForm.get('reported').value && eventForm.get('report_type').value==1">
     <div class="form-group">

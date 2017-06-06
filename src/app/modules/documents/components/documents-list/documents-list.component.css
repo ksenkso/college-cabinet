@@ -1,0 +1,12 @@
+:host {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.document {
+  margin: 2em 0;
+}
+
+.document__download {
+  float: right;
+}
