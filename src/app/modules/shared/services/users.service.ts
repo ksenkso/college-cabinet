@@ -6,6 +6,7 @@ import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observable} from "rxjs/Observable";
 import {Role} from "../interfaces/role";
 import {UserMeta} from "../interfaces/user-meta";
+import {UserWithMeta} from "../interfaces/user-with-meta";
 
 @Injectable()
 export class UserService {
@@ -28,14 +29,24 @@ export class UserService {
 
   }
 
-  getUserMeta(userId: any = ''): Promise<UserMeta[]> {
+  getMetaByType(type: number): Promise<UserWithMeta[]> {
+    return this.apiClient
+      .get<UserWithMeta[]>(`/user-meta/by-type/${type}`);
+  }
+
+  getMeta(userId: any = ''): Promise<UserMeta[]> {
     return this.apiClient
       .get<UserMeta[]>(`/user-meta/${userId}`);
   }
 
   setUserMeta(userMeta: UserMeta[]): Promise<UserMeta> {
     return this.apiClient
-      .post<UserMeta>(`/user-meta/batch`, userMeta);
+      .post<UserMeta>(`/user-meta`, userMeta);
+  }
+
+  batchUpdateMeta(userMeta: UserMeta[]) {
+    return this.apiClient
+      .post(`/user-meta/batch`, userMeta);
   }
 
   getUser(id: string|number): Promise<User> {

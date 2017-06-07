@@ -19,7 +19,7 @@ export class PersonalIndexComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.us.getUserMeta(this.user.id)
+    this.us.getMeta(this.user.id)
       .then(meta => {
         let mapping = {};
         meta.forEach((record: UserMeta) => {

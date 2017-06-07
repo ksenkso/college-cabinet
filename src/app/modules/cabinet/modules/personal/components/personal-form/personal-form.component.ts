@@ -39,7 +39,7 @@ export class PersonalFormComponent implements OnInit {
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
     this.us
-      .getUserMeta(this.user.id)
+      .getMeta(this.user.id)
       .then(meta => {
         let mapping = {};
         meta.forEach((record: UserMeta) => {

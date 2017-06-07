@@ -1,0 +1,31 @@
+<h3>Занятость студентов</h3>
+<table class="table table-bordered table-condensed">
+  <thead>
+  <tr>
+    <td>ФИО</td>
+    <td>Дополнительные курсы</td>
+    <td>Спортивные кружки</td>
+    <td>Дни</td>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngIf="items">
+    <tr *ngFor="let item of items; let i=index">
+      <td>
+        {{item.last_name}} {{item.first_name}} {{item.patronymic}}
+      </td>
+      <td>
+        {{item.employments?.courses}}
+      </td>
+      <td>
+        {{item.employments?.sports}}
+      </td>
+      <td>
+        {{item.employments?.days}}
+      </td>
+
+    </tr>
+  </ng-container>
+  </tbody>
+</table>
+<button type="button" class="btn btn-primary" (click)="goBack()">Назад</button>

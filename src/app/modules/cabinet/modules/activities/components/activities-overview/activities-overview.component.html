@@ -1,0 +1,23 @@
+<h3>Последняя активность группы</h3>
+<a routerLink="edit-activity" class="btn btn-primary">Редактировать</a>
+<div class="table-responsive" *ngIf="events">
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <td>Дата</td>
+      <td>Мероприятие</td>
+      <td>Результат</td>
+      <td>ФИО</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let event of events">
+      <td>{{event.date}}</td>
+      <td>{{event.name}}</td>
+      <td>{{event.result}}</td>
+      <td>{{event.fio}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

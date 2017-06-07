@@ -7,12 +7,13 @@ import {ApiClientService} from "./services/api-client.service";
 import {GroupsService} from "./services/groups.service";
 import {DocumentsService} from "./services/documents.service";
 import {UserService} from "./services/users.service";
+import {EventsService} from "./services/events.service";
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [NotFoundComponent],
-  providers: [AuthService, AuthGuard, ApiClientService, GroupsService, DocumentsService, UserService]
+  providers: [AuthService, AuthGuard, ApiClientService, GroupsService, DocumentsService, UserService, EventsService]
 })
 export class SharedModule { }

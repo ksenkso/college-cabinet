@@ -24,6 +24,16 @@ const routes: Routes = [
         path: 'collective',
         loadChildren: './modules/collective/collective.module#CollectiveModule',
         data: ['collective']
+      },
+      {
+        path: 'education',
+        loadChildren: './modules/education/education.module#EducationModule',
+        data: ['collective']
+      },
+      {
+        path: 'parents',
+        loadChildren: './modules/parents/parents.module#ParentsModule',
+        data: ['collective']
       }
 
     ]
