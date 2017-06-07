@@ -29,9 +29,13 @@ export class UserService {
 
   }
 
-  getMetaByType(type: number): Promise<UserWithMeta[]> {
+  getMetaByType(type: number, userId?: number): Promise<UserWithMeta[]> {
+    let url = `/user-meta/by-type/${type}`;
+    if (userId) {
+      url += `/${userId}`;
+    }
     return this.apiClient
-      .get<UserWithMeta[]>(`/user-meta/by-type/${type}`);
+      .get<UserWithMeta[]>(url);
   }
 
   getMeta(userId: any = ''): Promise<UserMeta[]> {

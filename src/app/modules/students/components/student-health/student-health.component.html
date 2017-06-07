@@ -1,0 +1,30 @@
+<form class="form form_meta" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+  <div class="form-group" formGroupName="health_group">
+    <label class="center-block">
+      Группа здоровья
+      <input type="text" formControlName="value" required>
+    </label>
+  </div>
+  <div class="form-group" formGroupName="insurance_policy">
+    <label class="center-block">
+      Страховой полис
+      <input type="text" formControlName="value" required>
+    </label>
+  </div>
+  <div class="form-group" formGroupName="health_recs">
+    <label class="center-block">
+      Рекомендации
+    </label>
+    <textarea title="Рекомендации" formControlName="value" cols="30" rows="10"></textarea>
+  </div>
+
+
+  <div style="margin-bottom: 1em">
+    <button type="submit"
+            [disabled]="!form.valid" class="btn btn-success">Save</button> &nbsp;
+    <button type="reset" (click)="revert()"
+            [disabled]="form.pristine" class="btn btn-danger">Revert</button>
+  </div>
+</form>
+

@@ -1,0 +1,43 @@
+:host {
+  display: block;
+
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid;
+}
+
+.tab {
+  border-right: 1px solid;
+  padding: 0 0.8em;
+  border-top: 1px solid;
+  position: relative;
+}
+
+.tab:first-child {
+  border-left: 1px solid;
+}
+
+.tab_active::after {
+  position: absolute;
+  display: block;
+  content: '';
+  height: 1px;
+  background-color: #fff;
+  width: 100%;
+  left: 0;
+  bottom: -1px;
+}
+
+.tab:first-child::before {
+  position: absolute;
+  content: '';
+  display: block;
+  height: 1px;
+  bottom: 1px;
+}
+
+.container {
+  margin-top: 1rem;
+}

@@ -1,4 +1,4 @@
-import {Component, OnInit, OnChanges, Input} from '@angular/core';
+import {Component, OnInit, OnChanges, OnDestroy, Input} from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import {Student} from "../../interfaces/student";
 import {Group} from "../../../../interfaces/group";
@@ -12,14 +12,20 @@ import {Location} from "@angular/common";
   templateUrl: 'student-form.component.html',
   styleUrls: ['student-form.component.css']
 })
-export class StudentFormComponent implements OnInit, OnChanges {
+export class StudentFormComponent implements OnInit, OnChanges, OnDestroy {
 
-  @Input() mode: string;
+  mode: string;
   @Input() student: Student;
   studentForm: FormGroup;
   groups: Group[] = [];
 
-  static get DEFAULT_STUDENT_STATE() {
+  get DEFAULT_STUDENT_STATE() {
+
+    if (this.studentsService.student) {
+      console.log(this.studentsService.student);
+      return this.studentsService.student;
+    }
+
     return <Student> {
       first_name: '',
       last_name: '',
@@ -31,18 +37,24 @@ export class StudentFormComponent implements OnInit, OnChanges {
     };
   }
 
+  ngOnDestroy() {
+    this.studentsService.student = this.prepareSaveStudent();
+  }
+
   constructor(
     private fb: FormBuilder,
     private studentsService: StudentsService,
     private route: ActivatedRoute,
     private location: Location
   ) {
-    console.log('mode: ', this.mode);
     this.createForm();
   }
 
   createForm() {
-    this.studentForm = this.fb.group(StudentFormComponent.DEFAULT_STUDENT_STATE);
+    let st = this.DEFAULT_STUDENT_STATE;
+    console.log(st);
+    this.studentForm = this.fb.group(st);
+
   }
 
   static log(data) {
@@ -95,7 +107,7 @@ export class StudentFormComponent implements OnInit, OnChanges {
   ngOnChanges() {
     StudentFormComponent.log(this.student);
     if (!this.student) {
-      this.student = StudentFormComponent.DEFAULT_STUDENT_STATE;
+      this.student = this.DEFAULT_STUDENT_STATE;
     }
     this.studentForm.reset({
       first_name: this.student.first_name as string,
@@ -115,16 +127,23 @@ export class StudentFormComponent implements OnInit, OnChanges {
       .getGroups()
       .then(groups => this.groups = groups);
 
-    if (this.mode === 'update') {
-      this.route.params
-        .switchMap((params: Params) => this.studentsService.getStudent(+params['id']))
-        .subscribe((student: Student) => {
-          this.student = student;
-          this.ngOnChanges();
-        });
-    } else {
-      this.student = StudentFormComponent.DEFAULT_STUDENT_STATE;
-    }
+    this.route.params
+      .switchMap((params: Params) => {
+        if (+params['id']) {
+          this.mode = 'update';
+          return this.studentsService.getStudent(+params['id']);
+        }
+
+        this.mode = 'create';
+        const st = this.DEFAULT_STUDENT_STATE;
+        this.studentsService.student = void 0;
+
+        return Promise.resolve(st);
+      })
+      .subscribe((student: Student) => {
+        this.student = student;
+        this.ngOnChanges();
+      });
 
   }
 

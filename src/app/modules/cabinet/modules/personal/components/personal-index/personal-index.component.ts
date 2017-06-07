@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../../../../../shared/interfaces/user";
 import {UserService} from "../../../../../shared/services/users.service";
-import {UserMeta} from "../../../../../shared/interfaces/user-meta";
-import {TeacherMeta} from "../../interfaces/teacher-meta";
+import {CustomMeta} from "../../../../../shared/classes/custom-meta";
+import {TeacherMeta} from "../../../../../shared/classes/teacher-meta";
 
 @Component({
   selector: 'app-personal-index',
@@ -19,18 +19,10 @@ export class PersonalIndexComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.us.getMeta(this.user.id)
-      .then(meta => {
-        let mapping = {};
-        meta.forEach((record: UserMeta) => {
-          if (record.meta_key) {
-            mapping[record.meta_key] = record.meta_value;
-          }
-
-        });
-        return (Object.keys(mapping).length ? mapping : void 0) as TeacherMeta;
+    this.us.getMetaByType(CustomMeta.META_PERSONAL, this.user.id)
+      .then(user => {
+          this.meta = new TeacherMeta(user[0].metaPersonal);
       })
-      .then(mapping => this.meta = mapping);
 
   }
 

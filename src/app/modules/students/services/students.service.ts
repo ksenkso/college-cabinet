@@ -11,14 +11,24 @@ export class StudentsService {
 
   private endpoint: string = '/student';
   private students: BehaviorSubject<Student[]> = new BehaviorSubject<Student[]>([]);
+  private _student: Student;
 
   students$: Observable<Student[]> = this.students.asObservable();
+
 
   constructor(
     private http: Http,
     private apiClient: ApiClientService
   ) {
 
+  }
+
+  set student(student: Student) {
+    this._student = student;
+  }
+
+  get student() {
+    return this._student;
   }
 
   getStudent(id: string|number): Promise<Student> {

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {UserService} from "../../../../../shared/services/users.service";
-import {TeacherMeta} from "../../interfaces/teacher-meta";
 import {User} from "../../../../../shared/interfaces/user";
 import {UserMeta} from "../../../../../shared/interfaces/user-meta";
 import {Location} from "@angular/common";
+import {CustomMeta} from "../../../../../shared/classes/custom-meta";
+import {TeacherMeta} from "../../../../../shared/classes/teacher-meta";
 
 @Component({
   selector: 'app-personal-form',
@@ -39,19 +40,13 @@ export class PersonalFormComponent implements OnInit {
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
     this.us
-      .getMeta(this.user.id)
-      .then(meta => {
-        let mapping = {};
-        meta.forEach((record: UserMeta) => {
-          if (record.meta_key) {
-            mapping[record.meta_key] = {value: record.meta_value, id: record.id};
-          }
-        });
-        return (Object.keys(mapping).length ? mapping : void 0) as TeacherMeta;
-
+      .getMetaByType(CustomMeta.META_PERSONAL, this.user.id)
+      .then(user => {
+        return new TeacherMeta(user[0].metaPersonal)
       })
       .then(meta => {
         console.log(meta);
+
         this.meta = meta || this.DEFAULT_FORM_STATE;
         this.ngOnChanges();
       })

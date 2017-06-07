@@ -6,7 +6,10 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {StudentsService} from "./services/students.service";
 import { StudentsComponent } from './components/students/students.component';
 import { StudentListComponent } from './components/student-list/student-list.component';
-import { StudentCreateComponent } from './components/student-create/student-create.component';
+import { StudentParentsComponent } from './components/student-parents/student-parents.component';
+import { StudentActivityComponent } from './components/student-activity/student-activity.component';
+import { StudentOutActivityComponent } from './components/student-out-activity/student-out-activity.component';
+import { StudentHealthComponent } from './components/student-health/student-health.component';
 import { StudentEditComponent } from './components/student-edit/student-edit.component';
 
 @NgModule({
@@ -15,7 +18,7 @@ import { StudentEditComponent } from './components/student-edit/student-edit.com
     ReactiveFormsModule,
     StudentsRoutingModule
   ],
-  declarations: [StudentFormComponent, StudentsComponent, StudentListComponent, StudentCreateComponent, StudentEditComponent],
+  declarations: [StudentFormComponent, StudentsComponent, StudentListComponent, StudentParentsComponent, StudentActivityComponent, StudentOutActivityComponent, StudentHealthComponent, StudentEditComponent],
   providers: [StudentsService]
 })
 export class StudentsModule { }

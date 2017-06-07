@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {TitleService} from "../../../../services/title.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {RouteParamsService} from "../../../shared/services/route-params.service";
 
 @Component({
   selector: 'app-student-edit',
@@ -8,10 +9,21 @@ import {TitleService} from "../../../../services/title.service";
 })
 export class StudentEditComponent implements OnInit {
 
-  constructor(private titleService: TitleService) { }
+  activeTab = 'activities';
+
+  constructor(
+    private route: ActivatedRoute,
+    private rps: RouteParamsService
+  ) { }
 
   ngOnInit() {
-    this.titleService.setTitle("Изменить студента");
+    this.route.params
+      .switchMap(params => Promise.resolve(+params['id']))
+      .subscribe(id => this.rps.set('user_id', id));
+  }
+
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
   }
 
 }
