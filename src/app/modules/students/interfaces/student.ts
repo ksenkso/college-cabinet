@@ -6,5 +6,7 @@ export interface Student {
   address: string;
   phone: string;
   group_id: number,
-  email: string
+  email: string,
+  sex: string,
+  birth_date: string;
 }

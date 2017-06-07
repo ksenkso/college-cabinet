@@ -17,6 +17,19 @@
     </label>
   </div>
   <div class="form-group">
+    <label class="center-block">Пол:
+      <select class="form-control" formControlName="sex" required>
+        <option value="m">Мужской</option>
+        <option value="f">Женский</option>
+      </select>
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Дата рождения:
+      <input type="date" class="form-control" formControlName="birth_date" required>
+    </label>
+  </div>
+  <div class="form-group">
     <label class="center-block">Адрес:
       <input class="form-control" formControlName="address" required>
     </label>

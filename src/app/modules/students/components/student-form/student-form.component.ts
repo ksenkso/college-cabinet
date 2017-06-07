@@ -33,7 +33,9 @@ export class StudentFormComponent implements OnInit, OnChanges, OnDestroy {
       email: '',
       group_id: null,
       address: '',
-      phone: ''
+      phone: '',
+      sex: 'm',
+      birth_date: ''
     };
   }
 
@@ -89,6 +91,15 @@ export class StudentFormComponent implements OnInit, OnChanges, OnDestroy {
   prepareSaveStudent(): Student {
     const formModel = this.studentForm.value;
 
+    const birthDate = new Date();
+
+    const parts = formModel.birth_date.split('-').map(d => +d);
+    birthDate.setDate(parts[2]);
+    birthDate.setMonth(parts[1]-1);
+    birthDate.setFullYear(parts[0]);
+
+    console.log(+birthDate/1000);
+
     return <Student>{
       id: this.student.id,
       first_name: formModel.first_name as string,
@@ -98,6 +109,8 @@ export class StudentFormComponent implements OnInit, OnChanges, OnDestroy {
       email: formModel.email as string,
       phone: formModel.phone as string,
       group_id: formModel.group_id as number,
+      sex: formModel.sex as string,
+      birth_date: '' + ((+birthDate / 1000) | 0) as string,
     };
   }
 
@@ -117,6 +130,8 @@ export class StudentFormComponent implements OnInit, OnChanges, OnDestroy {
       phone: this.student.phone as string,
       email: this.student.email as string,
       group_id: this.student.group_id as number,
+      sex: this.student.sex as string,
+      birth_date: this.student.birth_date as string,
     });
     //this.studentForm.reset(this.student);
   }
@@ -141,6 +156,8 @@ export class StudentFormComponent implements OnInit, OnChanges, OnDestroy {
         return Promise.resolve(st);
       })
       .subscribe((student: Student) => {
+        const d = new Date(+student.birth_date * 1000)
+        student.birth_date = `${d.getFullYear()}-${d.getMonth() < 9 ? '0' +( d.getMonth()+1) : d.getMonth()+1}-${d.getDate() < 10 ? '0' + d.getDate() : d.getDate()}`;
         this.student = student;
         this.ngOnChanges();
       });
