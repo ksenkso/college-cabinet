@@ -5,6 +5,8 @@ export class CustomMeta {
   static META_OUT_EMPLOYMENT = 1;
   static META_HEALTH = 2;
   static META_PARENTS = 3;
+  static META_BREEDING = 4;
+
   static META_PERSONAL = 10;
 
   constructor(metaList: UserMeta[]) {

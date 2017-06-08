@@ -4,6 +4,7 @@ import { CollectiveIndexComponent } from './components/collective-index/collecti
 import {RouterModule} from "@angular/router";
 import {SharedModule} from "../../../shared/shared.module";
 import {CollectiveRoutingModule} from "./collective-routing.module";
+import { CollectiveHealthComponent } from './components/collective-health/collective-health.component';
 
 @NgModule({
   imports: [
@@ -12,6 +13,6 @@ import {CollectiveRoutingModule} from "./collective-routing.module";
     SharedModule,
     CollectiveRoutingModule
   ],
-  declarations: [CollectiveIndexComponent]
+  declarations: [CollectiveIndexComponent, CollectiveHealthComponent]
 })
 export class CollectiveModule { }

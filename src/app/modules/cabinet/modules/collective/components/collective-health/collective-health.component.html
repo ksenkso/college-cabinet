@@ -1,0 +1,27 @@
+<h3>Листок здоровья</h3>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th >№</th>
+      <th >ФИО учащегося</th>
+      <th >Группа здоровья</th>
+      <th >Страховой полис</th>
+      <th >Рекомендации</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users; let i=index">
+      <td>{{i+1}}</td>
+      <td>{{user.last_name}} {{user.first_name}} {{user.patronymic}}</td>
+      <td>
+        {{user.health?.health_group?.value}}
+      </td>
+      <td>
+        {{user.health?.insurance_policy?.value}}
+      </td>
+      <td>{{user.health?.health_recs?.value}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

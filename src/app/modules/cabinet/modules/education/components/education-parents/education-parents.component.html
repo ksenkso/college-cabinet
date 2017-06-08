@@ -1,0 +1,43 @@
+<table class="table table-bordered table-condensed">
+  <thead>
+  <tr>
+    <td>Дата</td>
+    <td>Содержание</td>
+    <td>Результат</td>
+    <td></td>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngIf="items">
+    <tr *ngFor="let item of items; let i=index">
+      <td
+        contenteditable
+        [textContent]="item.date"
+        (input)="item.date=$event.target.textContent;markAsUpdated(item.id ? item.id : i)"
+      >
+        {{item.name}}
+      </td>
+      <td
+        contenteditable
+        [textContent]="item.content"
+        (input)="item.content=$event.target.textContent;markAsUpdated(item.id ? item.id : i)"
+      >
+        {{item.date}}
+      </td>
+      <td
+        contenteditable
+        [textContent]="item.result"
+        (input)="item.result=$event.target.textContent;markAsUpdated(item.id ? item.id : i)"
+      >
+        {{item.date}}
+      </td>
+
+      <td><i class="material-icons" (click)="deleteRow(item.id, i)">delete</i></td>
+
+    </tr>
+  </ng-container>
+  </tbody>
+</table>
+<button type="button" class="btn btn-primary" (click)="goBack()">Назад</button>
+<button type="button" class="btn btn-primary" (click)="addRow()">Добавить</button>
+<button type="button" class="btn btn-primary" (click)="save()">Сохранить</button>

@@ -7,6 +7,9 @@ export class CustomEvent {
 
   static EVENT_ACTIVITY = 10;
   static EVENT_VISIT = 11;
+  static EVENT_PSYCHOLOGIST = 12;
+  static EVENT_PARENT_MEET = 13;
+  static EVENT_PLAN = 3;
 
 
   constructor(e?: Event, userId?: number) {
@@ -18,8 +21,6 @@ export class CustomEvent {
       this.date = `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`;
       this.user_id = userId || e.user_id;
       this.type_id = e.type_id;
-
-      let [result, fio] = e.description.split('&');
 
     } else {
 

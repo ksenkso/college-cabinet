@@ -11,6 +11,7 @@ import {StudentActivityComponent} from "./components/student-activity/student-ac
 import {StudentOutActivityComponent} from "./components/student-out-activity/student-out-activity.component";
 import {StudentEditComponent} from "./components/student-edit/student-edit.component";
 import {StudentHealthComponent} from "./components/student-health/student-health.component";
+import {StudentBreedingComponent} from "./components/student-breeding/student-breeding.component";
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
       {
         path: 'health',
         component: StudentHealthComponent
+      },
+      {
+        path: 'breeding',
+        component: StudentBreedingComponent
       }
     ]
   },

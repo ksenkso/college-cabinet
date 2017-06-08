@@ -11,6 +11,7 @@ import { StudentActivityComponent } from './components/student-activity/student-
 import { StudentOutActivityComponent } from './components/student-out-activity/student-out-activity.component';
 import { StudentHealthComponent } from './components/student-health/student-health.component';
 import { StudentEditComponent } from './components/student-edit/student-edit.component';
+import { StudentBreedingComponent } from './components/student-breeding/student-breeding.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import { StudentEditComponent } from './components/student-edit/student-edit.com
     ReactiveFormsModule,
     StudentsRoutingModule
   ],
-  declarations: [StudentFormComponent, StudentsComponent, StudentListComponent, StudentParentsComponent, StudentActivityComponent, StudentOutActivityComponent, StudentHealthComponent, StudentEditComponent],
+  declarations: [StudentFormComponent, StudentsComponent, StudentListComponent, StudentParentsComponent, StudentActivityComponent, StudentOutActivityComponent, StudentHealthComponent, StudentEditComponent, StudentBreedingComponent],
   providers: [StudentsService]
 })
 export class StudentsModule { }
