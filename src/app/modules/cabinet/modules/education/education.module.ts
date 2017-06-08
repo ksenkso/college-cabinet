@@ -13,6 +13,6 @@ import { EducationParentsComponent } from './components/education-parents/educat
     CommonModule,
     EducationRoutingModule
   ],
-  declarations: [EducationIndexComponent, EducationPlanComponent, EducationPlanPartComponent, EducationBreedingComponent, EducationPsychoComponent, EducationParentsComponent]
+  declarations: [EducationIndexComponent, EducationPlanComponent, EducationPlanPartComponent, EducationBreedingComponent, EducationPsychoComponent, EducationParentsComponent ]
 })
 export class EducationModule { }

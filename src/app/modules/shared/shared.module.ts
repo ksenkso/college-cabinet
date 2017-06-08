@@ -9,12 +9,23 @@ import {DocumentsService} from "./services/documents.service";
 import {UserService} from "./services/users.service";
 import {EventsService} from "./services/events.service";
 import {RouteParamsService} from "./services/route-params.service";
+import {ProtocolService} from "./services/protocol.service";
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [NotFoundComponent],
-  providers: [AuthService, AuthGuard, ApiClientService, GroupsService, DocumentsService, UserService, EventsService, RouteParamsService]
+  providers: [
+    AuthService,
+    AuthGuard,
+    ApiClientService,
+    GroupsService,
+    DocumentsService,
+    UserService,
+    EventsService,
+    RouteParamsService,
+    ProtocolService
+  ]
 })
 export class SharedModule { }

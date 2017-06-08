@@ -18,22 +18,22 @@ const routes: Routes = [
       {
         path: 'personal',
         loadChildren: './modules/personal/personal.module#PersonalModule',
-        data: ['personal']
       },
       {
         path: 'collective',
         loadChildren: './modules/collective/collective.module#CollectiveModule',
-        data: ['collective']
       },
       {
         path: 'education',
         loadChildren: './modules/education/education.module#EducationModule',
-        data: ['collective']
       },
       {
         path: 'parents',
         loadChildren: './modules/parents/parents.module#ParentsModule',
-        data: ['collective']
+      },
+      {
+        path: 'protocols',
+        loadChildren: './modules/protocols/protocols.module#ProtocolsModule',
       }
 
     ]

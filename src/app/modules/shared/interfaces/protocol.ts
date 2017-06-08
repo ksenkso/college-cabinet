@@ -1,4 +1,4 @@
-export interface Protocol {
+export interface IProtocol {
   theme: string;
   purposes: string;
   form: string;
