@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import {Http, Headers, ResponseContentType, Response} from "@angular/http";
 import {AuthService} from "./auth.service";
 
+
 @Injectable()
 export class ApiClientService {
 
-  apiURL = 'http://api.journal.ru/v1';
+  apiURL = (window as any).apiURL;
 
   constructor(
     private http: Http,

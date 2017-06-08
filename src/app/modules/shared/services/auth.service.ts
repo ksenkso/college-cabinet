@@ -5,7 +5,7 @@ import {Router} from "@angular/router";
 @Injectable()
 export class AuthService {
 
-  private endpoint = 'http://api.journal.ru/v1/auth';
+  private endpoint = 'http://college-api.cleverapps.io/v1/auth';
   redirtectUrl: string;
 
   constructor(
