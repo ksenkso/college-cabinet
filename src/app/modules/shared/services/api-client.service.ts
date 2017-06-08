@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Http, Headers, ResponseContentType, Response} from "@angular/http";
 import {AuthService} from "./auth.service";
 
+
 @Injectable()
 export class ApiClientService {
 
