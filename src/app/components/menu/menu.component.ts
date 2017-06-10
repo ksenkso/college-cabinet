@@ -41,7 +41,11 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
 
-    this.menuService.getMenu().then(menu => this.menu = menu);
+    this.menuService.getMenu().then(menu => {
+      if (menu) {
+        this.menu = menu
+      }
+    });
   }
 
   toggle() {

@@ -5,7 +5,7 @@ import {Router} from "@angular/router";
 @Injectable()
 export class AuthService {
 
-  private endpoint = 'http://api.journal.ru/v1/auth';
+  private endpoint = (window as any).apiURL + 'auth';
   redirtectUrl: string;
 
   constructor(

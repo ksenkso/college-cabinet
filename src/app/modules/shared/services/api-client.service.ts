@@ -5,7 +5,7 @@ import {AuthService} from "./auth.service";
 @Injectable()
 export class ApiClientService {
 
-  apiURL = 'http://api.journal.ru/v1';
+  apiURL = (window as any).apiURL;
 
   constructor(
     private http: Http,
@@ -36,7 +36,7 @@ export class ApiClientService {
   get<T>(endpoint: string, headers: any = {}): Promise<T> {
     const requestHeaders: Headers = this.authService.getTokenAuthHeaders();
 
-    if (!requestHeaders.get('Authorization')) return;
+    if (!requestHeaders.get('Authorization')) return Promise.reject(null);
 
     for (let key in headers) {
       if (headers.hasOwnProperty(key)) {

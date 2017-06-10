@@ -5,5 +5,5 @@
 </div>
 <span class="event__type" [style.backgroundColor]="event.type?.color">{{event.type?.name}}</span>
 <span class="event_reported" *ngIf="event.reported">В отчёте</span>
-<div class="event__time">{{event.timestamp * 1000 | date:'shortTime'}}</div>
+<div class="event__time">{{+event.timestamp * 1000 | date:'shortTime'}}</div>
 <div class="event__description">{{event.description ? event.description.split('&').join('\n') : 'Нет описания'}}</div>
