@@ -1,3 +1,10 @@
-<p>
-  protocols-outclass works!
-</p>
+<ng-container *ngIf="protocols; else empty">
+  <div class="protocol" *ngFor="let protocol of protocols">
+    <div class="h3">{{protocol.theme}}</div>
+    <div class="protocol__date">{{protocol.date * 1000 | date:'d.M.y'}}</div>
+    <div class="protocol__form">{{protocol.form}}</div>
+    <a [routerLink]="['view', protocol.id]">Просмотр</a>
+    <a [routerLink]="['edit', protocol.id]">Редактирование</a>
+  </div>
+</ng-container>
+<ng-template #empty></ng-template>

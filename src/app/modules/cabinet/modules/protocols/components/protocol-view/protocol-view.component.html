@@ -1,3 +1,9 @@
-<p>
-  protocol-view works!
-</p>
+<ng-container *ngIf="protocol">
+
+  <app-protocol-view-outclass [protocol]="protocol" *ngIf="protocol.protocolType.id == 1;else parents"></app-protocol-view-outclass>
+  <ng-template #parents>
+    <app-protocol-view-parents [protocol]="protocol"></app-protocol-view-parents>
+  </ng-template>
+
+
+</ng-container>

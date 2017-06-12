@@ -6,6 +6,8 @@ import {RouterModule, Routes} from "@angular/router";
 import {ProtocolsIndexComponent} from "./components/protocols-index/protocols-index.component";
 import {ProtocolsOutclassComponent} from "./components/protocols-outclass/protocols-outclass.component";
 import {ProtocolsParentMeetingsComponent} from "./components/protocols-parent-meetings/protocols-parent-meetings.component";
+import {ProtocolViewComponent} from "./components/protocol-view/protocol-view.component";
+import {ProtocolFormComponent} from "./components/protocol-form/protocol-form.component";
 
 const routes: Routes = [
   {
@@ -19,7 +21,18 @@ const routes: Routes = [
       {
         path: 'parent-meetings',
         component: ProtocolsParentMeetingsComponent
-
+      },
+      {
+        path: 'view/:id',
+        component: ProtocolViewComponent
+      },
+      {
+        path: 'edit/:id',
+        component: ProtocolFormComponent
+      },
+      {
+        path: 'create',
+        component: ProtocolFormComponent
       }
     ]
   },
