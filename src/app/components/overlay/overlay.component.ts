@@ -1,6 +1,7 @@
-import {Component, OnInit, ElementRef} from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import {OverlayService} from "../../services/overlay.service";
 import {animate, transition, state, trigger, style} from "@angular/animations";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-overlay',
@@ -21,20 +22,30 @@ import {animate, transition, state, trigger, style} from "@angular/animations";
     ])
   ]
 })
-export class OverlayComponent implements OnInit {
+export class OverlayComponent implements OnInit, OnDestroy {
 
+  sub: Subscription;
   visible = false;
 
-  constructor(private overlayService: OverlayService, private el: ElementRef) {
-      overlayService.visible$.subscribe(value => {
+  constructor(private overlayService: OverlayService) {
+
+    if (!this.sub) {
+
+      this.sub = overlayService.visible$.subscribe(() => {
         this.visible = !this.visible;
 
-        //document.body.style.overflow = this.visible ? 'hidden' : 'auto';
-    });
+        console.log(this.visible);
+      });
+    }
+
   }
 
   ngOnInit() {
+    console.log('overlay');
+  }
 
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 
