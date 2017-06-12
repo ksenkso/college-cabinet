@@ -6,4 +6,5 @@ export interface Group {
   name: string;
   abbreviation: string;
   year: number;
+  spec_id: number;
 }

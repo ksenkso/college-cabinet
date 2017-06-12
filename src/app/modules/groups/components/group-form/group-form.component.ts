@@ -18,13 +18,15 @@ export class GroupFormComponent implements OnInit, OnChanges {
   @Input() mode: string;
   @Input() group: Group;
   groupForm: FormGroup;
+  private specs: { id: number; name: string; code: string }[] = [];
 
   static get DEFAULT_GROUP_STATE(): Group {
     return  <Group> {
       id: null,
       name: '',
       abbreviation: '',
-      year: (new Date()).getFullYear()
+      year: (new Date()).getFullYear(),
+      spec_id: 1
     }
   }
 
@@ -78,6 +80,7 @@ export class GroupFormComponent implements OnInit, OnChanges {
       name: formModel.name as string,
       abbreviation: formModel.abbreviation as string,
       year: formModel.year as number,
+      spec_id: formModel.spec_id
     };
   }
 
@@ -91,10 +94,16 @@ export class GroupFormComponent implements OnInit, OnChanges {
       name: this.group.name as string,
       abbreviation: this.group.abbreviation as string,
       year: this.group.year as number,
+      spec_id: this.group.spec_id as number
     });
   }
 
   ngOnInit() {
+
+    this.groupsService
+      .getSpecs()
+      .then(specs => this.specs = specs);
+
     if (this.mode === 'update') {
 
       this.route.params

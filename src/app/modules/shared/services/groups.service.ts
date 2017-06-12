@@ -17,6 +17,11 @@ export class GroupsService {
     private apiClient: ApiClientService,
   ) { }
 
+  getSpecs(): Promise<{id: number, name: string, code: string}[]> {
+    return this.apiClient
+      .get('/spec');
+  }
+
   createGroup(group: Group): Promise<Group> {
     return this.apiClient
       .post<Group>(this.endpoint, group);
