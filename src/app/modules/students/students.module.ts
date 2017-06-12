@@ -12,6 +12,8 @@ import { StudentOutActivityComponent } from './components/student-out-activity/s
 import { StudentHealthComponent } from './components/student-health/student-health.component';
 import { StudentEditComponent } from './components/student-edit/student-edit.component';
 import { StudentBreedingComponent } from './components/student-breeding/student-breeding.component';
+import { StudentFamilyComponent } from './components/student-family/student-family.component';
+import {FamilyService} from "../shared/services/family.service";
 
 @NgModule({
   imports: [
@@ -19,7 +21,7 @@ import { StudentBreedingComponent } from './components/student-breeding/student-
     ReactiveFormsModule,
     StudentsRoutingModule
   ],
-  declarations: [StudentFormComponent, StudentsComponent, StudentListComponent, StudentParentsComponent, StudentActivityComponent, StudentOutActivityComponent, StudentHealthComponent, StudentEditComponent, StudentBreedingComponent],
-  providers: [StudentsService]
+  declarations: [StudentFormComponent, StudentsComponent, StudentListComponent, StudentParentsComponent, StudentActivityComponent, StudentOutActivityComponent, StudentHealthComponent, StudentEditComponent, StudentBreedingComponent, StudentFamilyComponent],
+  providers: [StudentsService, FamilyService]
 })
 export class StudentsModule { }

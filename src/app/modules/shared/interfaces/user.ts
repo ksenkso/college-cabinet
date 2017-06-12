@@ -1,3 +1,4 @@
+import {Family} from "../classes/family";
 export interface User {
   id?: number,
   first_name: string;
@@ -7,5 +8,6 @@ export interface User {
   phone?: string;
   group_id: number,
   email?: string,
-  roles?: any
+  roles?: any;
+  family?: Family
 }

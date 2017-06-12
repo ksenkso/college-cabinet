@@ -10,6 +10,7 @@ import {UserService} from "./services/users.service";
 import {EventsService} from "./services/events.service";
 import {RouteParamsService} from "./services/route-params.service";
 import {ProtocolService} from "./services/protocol.service";
+import {FamilyService} from "./services/family.service";
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import {ProtocolService} from "./services/protocol.service";
     UserService,
     EventsService,
     RouteParamsService,
-    ProtocolService
+    ProtocolService,
+    FamilyService
   ]
 })
 export class SharedModule { }

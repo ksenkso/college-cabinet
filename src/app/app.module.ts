@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { HttpModule } from '@angular/http';
 
 
@@ -37,6 +37,7 @@ import {SharedModule} from "./modules/shared/shared.module";
     OverlayService,
     MenuService,
     TitleService,
+    {provide: LOCALE_ID, useValue: 'ru-RU'}
   ],
 
   bootstrap: [AppComponent]

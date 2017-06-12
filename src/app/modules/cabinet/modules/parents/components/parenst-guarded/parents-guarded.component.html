@@ -1,0 +1,23 @@
+<h3 class="text-center">Опекунские семьи</h3>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <td>ФИО студента</td>
+      <td>ФИО родителей / опекунов</td>
+      <td>Причина опекунства</td>
+      <td>Адрес</td>
+      <td>Телефон родителей</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{user.last_name}} {{user.first_name}} {{user.patronymic}}</td>
+      <td>{{user.family?.p_name}}</td>
+      <td>{{user.family?.purposes}}</td>
+      <td>{{user.family?.p_address}}</td>
+      <td>{{user.family?.p_phone}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

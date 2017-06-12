@@ -1,0 +1,62 @@
+<form class="form form_students" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+  <div class="form-group">
+    <label class="center-block">Тема:
+      <input class="form-control" formControlName="theme" required>
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">{{schema && schema.purposes}}
+      <input class="form-control" formControlName="purposes" required>
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Тип:
+      <select class="form-control" formControlName="type" required>
+        <option value="{{type.id}}" *ngFor="let type of protocolTypes">{{type.name}}</option>
+      </select>
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Дата:
+      <input class="form-control" type="date" formControlName="date" required>
+    </label>
+  </div>
+  <div class="form-group" *ngIf="form.get('type').value== 1">
+    <label class="center-block">Форма:
+      <input class="form-control" formControlName="form">
+    </label>
+  </div>
+  <div class="form-group" *ngIf="form.get('type').value==2">
+    <label class="center-block">Присутствовали:
+      <input type="number" class="form-control" formControlName="count" required>
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">{{schema && schema.plan}}
+      <input class="form-control" formControlName="plan" required>
+    </label>
+  </div>
+  <div class="form-group" *ngIf="form.get('type').value==1">
+    <label class="center-block">{{schema && schema.organization}}
+      <textarea class="form-control" formControlName="organization" required></textarea>
+    </label>
+  </div>
+  <div class="form-group" *ngIf="form.get('type').value==1">
+    <label class="center-block">{{schema && schema.analysis}}
+      <input type="tel" class="form-control" formControlName="analysis" required>
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">{{schema && schema.conclusions}}
+      <textarea class="form-control" formControlName="conclusions" required></textarea>
+    </label>
+  </div>
+  <div style="margin-bottom: 1em">
+    <button type="submit"
+            [disabled]="!form.valid" class="btn btn-success">Save</button> &nbsp;
+    <button type="reset" (click)="revert()"
+            [disabled]="form.pristine" class="btn btn-danger">Revert</button>
+  </div>
+</form>
+{{form.value | json}}
